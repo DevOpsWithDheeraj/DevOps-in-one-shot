@@ -1,0 +1,55 @@
+name: Kubernetes CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push-images:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Service A
+        run: |
+          docker build -t mydockerhubuser/service-a:latest ./service-a
+          docker push mydockerhubuser/service-a:latest
+
+      - name: Build and Push Service B
+        run: |
+          docker build -t mydockerhubuser/service-b:latest ./service-b
+          docker push mydockerhubuser/service-b:latest
+
+  deploy-to-k8s:
+    needs: build-and-push-images
+    runs-on: ubuntu-latest
+    env:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.29.0'
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/service-a-deployment service-a=mydockerhubuser/service-a:latest
+          kubectl set image deployment/service-b-deployment service-b=mydockerhubuser/service-b:latest
+          kubectl rollout status deployment/service-a-deployment
+          kubectl rollout status deployment/service-b-deployment
