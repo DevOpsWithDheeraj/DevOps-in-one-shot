@@ -1,0 +1,41 @@
+name: Docker Build & Deploy to AWS ECS
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to AWS ECR
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          region: us-east-1
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-flask-app .
+          docker tag my-flask-app:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-flask-app:latest
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-flask-app:latest
+
+  deploy-to-ecs:
+    needs: build-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update ECS Service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          cluster: my-ecs-cluster
+          service: my-flask-service
+          task-definition: my-flask-task
+          wait-for-service-stability: true
