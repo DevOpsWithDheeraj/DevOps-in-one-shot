@@ -1,4 +1,4 @@
-# 🚀 DevOps Complete Syllabus (Beginner to Advanced)
+# 🚀 DevOps (Beginner to Advanced)
 
 ## 📘 What is DevOps?
 
@@ -13,7 +13,7 @@ DevOps emphasizes:
 
 ---
 
-## 🧭 DevOps Roadmap / Syllabus Overview
+## 🧭 DevOps Roadmap Overview
 
 1. **Git & Version Control**
 2. **Linux Fundamentals**
@@ -258,7 +258,3 @@ By mastering the tools above and understanding the principles behind them, you�
 1️⃣ Git → 2️⃣ Linux → 3️⃣ Jenkins → 4️⃣ Maven → 5️⃣ Docker → 6️⃣ Kubernetes → 7️⃣ Ansible → 8️⃣ Terraform → 9️⃣ AWS → 🔟 Monitoring → 🏁 Project
 
 ---
-
-**Created by:** *DevOpsWithDheeraj*  
-🔗 [GitHub Repository](https://github.com/DevOpsWithDheeraj)
-```
