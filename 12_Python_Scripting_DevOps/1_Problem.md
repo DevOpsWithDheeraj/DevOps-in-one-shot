@@ -19,7 +19,7 @@ You need a **Python script** that:
 
 ---
 
-### **Solution: Python Script**
+## **Solution: Python Script**
 
 ```python
 import os
