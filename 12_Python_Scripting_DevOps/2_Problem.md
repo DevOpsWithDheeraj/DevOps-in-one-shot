@@ -96,7 +96,7 @@ Let’s walk through that **Disk Usage & Auto-Cleanup** script step-by-step, lin
 
 ---
 
-## 1) Imports & constants
+### 1) Imports & constants
 
 ```python
 import os
@@ -125,7 +125,7 @@ CLEAN_DIRS = ["/tmp", "/var/log/app"]
 
 ---
 
-## 2) `get_disk_usage()` — read `df` and build usage dictionary
+### 2) `get_disk_usage()` — read `df` and build usage dictionary
 
 ```python
 def get_disk_usage():
@@ -153,7 +153,7 @@ def get_disk_usage():
 
 ---
 
-## 3) `clean_old_files(directory, days=7)` — delete files older than `days`
+### 3) `clean_old_files(directory, days=7)` — delete files older than `days`
 
 ```python
 def clean_old_files(directory, days=7):
@@ -186,7 +186,7 @@ def clean_old_files(directory, days=7):
 
 ---
 
-## 4) `log_message(message)` — append messages to a log file
+### 4) `log_message(message)` — append messages to a log file
 
 ```python
 def log_message(message):
@@ -204,7 +204,7 @@ def log_message(message):
 
 ---
 
-## 5) `if __name__ == "__main__":` — main control flow
+### 5) `if __name__ == "__main__":` — main control flow
 
 ```python
 usage_report = get_disk_usage()
@@ -249,7 +249,7 @@ log_message("Disk cleanup completed successfully.")
 
 ---
 
-## 6) Risks, limitations, and safety
+### 6) Risks, limitations, and safety
 
 * **Accidental data loss** — deleting from `/var/log/app` can remove needed logs for audits. Always implement a dry-run and backups.
 * **Permissions** — deletion requires appropriate user privileges.
@@ -260,7 +260,7 @@ log_message("Disk cleanup completed successfully.")
 
 ---
 
-## 7) Recommended improvements (practical, production-ready)
+### 7) Recommended improvements (practical, production-ready)
 
 1. **Use `logging` module** (with rotation) instead of `open()` to write log entries.
 2. **Add dry-run flag** to preview deletions: `--dry-run` prints what would be deleted.
@@ -275,7 +275,7 @@ log_message("Disk cleanup completed successfully.")
 
 ---
 
-## 8) Quick example: robust `df` parsing (small snippet)
+### 8) Quick example: robust `df` parsing (small snippet)
 
 ```python
 result = subprocess.run(["df", "--output=pcent,target", "-P"], capture_output=True, text=True, check=True)
@@ -289,7 +289,7 @@ for line in lines:
 
 ---
 
-## 9) Testing & deployment tips
+### 9) Testing & deployment tips
 
 * **Run locally with `--dry-run`** on a test directory to validate logic.
 * **Use unit tests** for `clean_old_files` using temporary directories (`tempfile.TemporaryDirectory`) and controlled file mtimes.
