@@ -126,18 +126,9 @@ pipeline {
   }
 }
 ```
-
 ---
 
-## 📦 5. Artifact Repository
-
-* Tools: Nexus, JFrog Artifactory
-* Storing build artifacts (JAR, WAR, Docker images)
-* Versioning and promotion between dev/staging/prod
-
----
-
-## 🐳 6. Containerization
+## 🐳 5. Containerization
 
 * Docker concepts: Images, Containers, Volumes, Networks
 * Dockerfile, multi-stage builds, Docker Compose
@@ -145,7 +136,7 @@ pipeline {
 
 ---
 
-## ☸️ 7. Container Orchestration
+## ☸️ 6. Container Orchestration
 
 * Kubernetes architecture: Master & Worker nodes
 * Pods, Deployments, ReplicaSets, Services, Ingress
@@ -154,7 +145,7 @@ pipeline {
 
 ---
 
-## ⚒️ 8. Configuration Management
+## ⚒️ 7. Configuration Management
 
 * Tools: Ansible, Puppet, Chef
 * Concepts: Playbooks, Roles, Modules, Idempotency
@@ -163,7 +154,7 @@ pipeline {
 
 ---
 
-## 🌍 9. Infrastructure as Code (IaC)
+## 🌍 8. Infrastructure as Code (IaC)
 
 * Tools: Terraform, CloudFormation
 * Terraform concepts: Provider, Resource, State, Modules
@@ -172,7 +163,7 @@ pipeline {
 
 ---
 
-## ☁️ 10. Cloud Computing
+## ☁️ 9. Cloud Computing
 
 * AWS, Azure, GCP basics
 * Key services for DevOps:
@@ -186,7 +177,7 @@ pipeline {
 
 ---
 
-## 📊 11. Monitoring & Logging
+## 📊 10. Monitoring & Logging
 
 * Tools: Prometheus, Grafana, ELK Stack
 * Metrics collection, dashboards, alerts
@@ -194,7 +185,7 @@ pipeline {
 
 ---
 
-## 🔐 12. Security & DevSecOps
+## 🔐 11. Security & DevSecOps
 
 * Secrets management: Vault, AWS KMS
 * Security scanning: Trivy, SonarQube
@@ -203,14 +194,14 @@ pipeline {
 
 ---
 
-## 🧪 13. Scripting
+## 🧪 12. Scripting
 
 * Bash scripting for automation
 * Python scripting for APIs, cloud provisioning, IaC
 
 ---
 
-## 🧠 14. Agile & ITIL Practices
+## 🧠 13. Agile & ITIL Practices
 
 * Agile methodology (Scrum, Kanban)
 * ITIL processes: Incident, Problem, Change, Release Management
@@ -218,7 +209,7 @@ pipeline {
 
 ---
 
-## 🏗️ 15. Hands-on DevOps Project
+## 🏗️ 14. Hands-on DevOps Project
 
 **Objective:** Automate deployment of a web application end-to-end.
 
