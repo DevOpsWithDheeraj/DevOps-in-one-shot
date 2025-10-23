@@ -1,4 +1,4 @@
-## **Problem: Automate Log File Analysis and Alerting**
+# **Problem: Automate Log File Analysis and Alerting**
 
 **Scenario:**
 You are a DevOps engineer. Your application generates log files daily in `/var/log/app/`. Each log file contains multiple lines in the following format:
