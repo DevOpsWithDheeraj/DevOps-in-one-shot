@@ -127,17 +127,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
       - uses: actions/checkout@v4
+      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          
       - name: Install Dependencies
         run: npm install
+        
       - name: Run Tests
         run: npm test
+        
       - name: Build Docker Image
         run: docker build -t dheeraj/node-app:latest .
+        
       - name: Push Docker Image
         run: docker push dheeraj/node-app:latest
 ```
