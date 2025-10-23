@@ -273,6 +273,3 @@ docker-compose up -d
 > 💬 “Containers make applications **portable, consistent, and scalable**, the foundation of modern DevOps pipelines.”
 
 ---
-
-Do you want me to do that next?
-```
