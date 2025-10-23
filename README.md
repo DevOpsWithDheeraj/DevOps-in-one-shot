@@ -13,12 +13,12 @@ DevOps emphasizes:
 
 ---
 
-## 🧭 DevOps Roadmap Overview
+## 🧭 DevOps Roadmap / Syllabus Overview
 
 1. **Git & Version Control**
 2. **Linux Fundamentals**
-3. **Build & CI/CD Tools (Jenkins, GitHub Actions, etc.)**
-4. **Build Automation Tools (Maven, Gradle)**
+3. **Networking in DevOps**
+4. **Build & CI/CD Tools (Jenkins, GitHub Actions, etc.)**
 5. **Artifact Repository (Nexus, JFrog Artifactory)**
 6. **Containerization (Docker)**
 7. **Container Orchestration (Kubernetes)**
@@ -26,7 +26,7 @@ DevOps emphasizes:
 9. **Infrastructure as Code (Terraform, CloudFormation)**
 10. **Cloud Computing (AWS, Azure, GCP)**
 11. **Monitoring & Logging (Prometheus, Grafana, ELK Stack)**
-12. **Networking, Security & DevSecOps**
+12. **Security & DevSecOps**
 13. **Scripting (Shell, Python)**
 14. **Agile & ITIL Practices**
 15. **Hands-on DevOps Project**
@@ -35,226 +35,211 @@ DevOps emphasizes:
 
 ## 🧩 1. Git & Version Control
 
-**Key Topics**
-- What is Version Control
-- Git architecture (Working directory, Staging area, Repository)
-- Basic Commands: `git init`, `clone`, `add`, `commit`, `push`, `pull`
-- Branching and Merging
-- GitHub/GitLab/Bitbucket
-- Pull Requests and Code Reviews
-- Git Workflow (Gitflow, Trunk-based)
+- Version Control concepts: Local, Centralized, Distributed  
+- Git basics: init, clone, add, commit, push, pull  
+- Branching & merging strategies  
+- Pull requests and Git workflows (Gitflow, Trunk-Based)  
+- Advanced concepts: stash, revert, reset, cherry-pick, tags  
+- Integration with Jenkins, Ansible, Docker, Kubernetes, Terraform, GitHub Actions  
 
-**Hands-on:**
-- Create GitHub repository
-- Implement branching strategy
+**Hands-on Example:**  
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin <repo_url>
+git push -u origin main
+````
 
 ---
 
 ## 🐧 2. Linux Fundamentals
 
-**Key Topics**
-- File System Structure
-- Basic Commands (`ls`, `cat`, `grep`, `awk`, `sed`, `find`)
-- File permissions (`chmod`, `chown`)
-- Process management (`ps`, `top`, `kill`)
-- Networking commands (`netstat`, `ping`, `curl`)
-- Disk Management and Partitioning
-- Shell Scripting basics
+* File system structure: `/`, `/home`, `/etc`, `/var`, `/usr`, `/opt`
+* Basic commands: `ls`, `cd`, `cat`, `cp`, `mv`, `rm`, `touch`, `mkdir`
+* File permissions: `chmod`, `chown`, `id`, `groups`
+* Process management: `ps`, `top`, `htop`, `kill`, `systemctl`
+* Disk management: `df -h`, `du -sh`, `lsblk`, `fdisk`, `mount`
+* Package management: `apt`, `yum`, `rpm`
+* Shell scripting basics: automation with bash
+* Monitoring & logs: `uptime`, `free -h`, `journalctl`, `tail -f`
+* SSH & remote access: `ssh`, `scp`, key-based authentication
 
-**Hands-on:**
-- Write a bash script for automated backups
+**Hands-on Example:**
 
----
-
-## ⚙️ 3. Build & CI/CD Tools
-
-### Jenkins
-- Jenkins setup and architecture
-- Freestyle vs Pipeline jobs
-- Jenkinsfile (Declarative & Scripted)
-- Integration with GitHub and Maven
-- CI/CD pipeline setup
-
-### GitHub Actions
-- Workflow syntax (`.github/workflows`)
-- Jobs, runners, and triggers
-- Reusable workflows
-
-**Hands-on:**
-- Create a CI pipeline with Jenkins or GitHub Actions
+```bash
+#!/bin/bash
+echo "Deploying application..."
+git pull origin main
+docker-compose down
+docker-compose up -d
+echo "Deployment complete!"
+```
 
 ---
 
-## 🧱 4. Build Tools
+## 🌐 3. Networking in DevOps
 
-### Maven / Gradle
-- Understanding POM.xml / build.gradle
-- Dependency management
-- Build lifecycle (compile, test, package, deploy)
-- Integration with Jenkins
+**Networking is critical** in DevOps for deployment, monitoring, and troubleshooting.
 
-**Hands-on:**
-- Build a Java app using Maven and push artifacts to Nexus
+### Key Concepts:
+
+* OSI & TCP/IP model basics
+* IP addressing, Subnetting, NAT
+* DNS: Domain names, Record types (A, CNAME, MX, TXT)
+* HTTP/HTTPS protocols, SSL/TLS
+* Load Balancers: ELB, Nginx, HAProxy
+* Ports & protocols (80, 443, 22, 8080, etc.)
+* Firewalls & Security Groups
+* Network troubleshooting commands: `ping`, `traceroute`, `netstat`, `curl`, `nslookup`, `dig`
+
+**Hands-on Example:**
+
+```bash
+ping google.com
+curl -I https://myapp.com
+netstat -tulnp | grep 80
+nslookup example.com
+```
+
+---
+
+## ⚙️ 4. Build & CI/CD Tools
+
+* CI/CD concepts: Continuous Integration, Continuous Deployment
+* Jenkins setup and configuration
+* Jenkins pipelines: Freestyle vs Declarative (`Jenkinsfile`)
+* GitHub Actions: workflows, jobs, runners, triggers
+* Advanced CI/CD: Docker + Kubernetes integration, automated deployments
+* Best practices: idempotent pipelines, secrets management, notifications
+
+**Hands-on Example (Jenkinsfile):**
+
+```groovy
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') { steps { git 'https://github.com/DevOpsWithDheeraj/demo.git' } }
+    stage('Build') { steps { sh 'mvn clean verify' } }
+    stage('Docker Build') { steps { sh 'docker build -t dheeraj/demo-app:latest .' } }
+    stage('Deploy') { steps { sh 'kubectl set image deployment/demo demo=dheeraj/demo-app:latest' } }
+  }
+}
+```
 
 ---
 
 ## 📦 5. Artifact Repository
 
-- Nexus or JFrog Artifactory setup
-- Managing build artifacts
-- Versioning and artifact promotion
-
-**Hands-on:**
-- Push a JAR file to Nexus
+* Tools: Nexus, JFrog Artifactory
+* Storing build artifacts (JAR, WAR, Docker images)
+* Versioning and promotion between dev/staging/prod
 
 ---
 
-## 🐳 6. Docker (Containerization)
+## 🐳 6. Containerization
 
-**Key Topics**
-- What is a container
-- Docker architecture (Images, Containers, Volumes, Networks)
-- Dockerfile and multi-stage builds
-- Docker Compose
-- Pushing images to Docker Hub
-
-**Hands-on:**
-- Containerize a web application
+* Docker concepts: Images, Containers, Volumes, Networks
+* Dockerfile, multi-stage builds, Docker Compose
+* Pushing images to Docker Hub / private registry
 
 ---
 
-## ☸️ 7. Kubernetes (Orchestration)
+## ☸️ 7. Container Orchestration
 
-**Key Topics**
-- Kubernetes architecture (Master & Worker Nodes)
-- Pods, ReplicaSets, Deployments, Services, Ingress
-- ConfigMaps, Secrets, Volumes
-- Helm (Package Manager for Kubernetes)
-
-**Hands-on:**
-- Deploy Dockerized app on Kubernetes cluster
+* Kubernetes architecture: Master & Worker nodes
+* Pods, Deployments, ReplicaSets, Services, Ingress
+* ConfigMaps, Secrets, Volumes
+* Helm package manager for Kubernetes
 
 ---
 
-## ⚒️ 8. Configuration Management (Ansible)
+## ⚒️ 8. Configuration Management
 
-**Key Topics**
-- What is Ansible
-- Inventory, Playbooks, Roles, Modules
-- Ansible Vault (Encryption)
-- Integration with Jenkins
-
-**Hands-on:**
-- Use Ansible to configure Apache web server
+* Tools: Ansible, Puppet, Chef
+* Concepts: Playbooks, Roles, Modules, Idempotency
+* Ansible Vault for secrets management
+* Integration with CI/CD pipelines
 
 ---
 
-## 🌍 9. Infrastructure as Code (Terraform)
+## 🌍 9. Infrastructure as Code (IaC)
 
-**Key Topics**
-- Terraform architecture (Provider, Resource, State)
-- Writing `.tf` files
-- Variables, Outputs, Modules
-- Terraform Cloud & Workspaces
-
-**Hands-on:**
-- Provision AWS EC2 + S3 using Terraform
+* Tools: Terraform, CloudFormation
+* Terraform concepts: Provider, Resource, State, Modules
+* Automating cloud infrastructure provisioning
+* IaC integration with CI/CD pipelines
 
 ---
 
-## ☁️ 10. Cloud Computing (AWS Focused)
+## ☁️ 10. Cloud Computing
 
-**Key Services for DevOps**
-- **Compute:** EC2, Lambda
-- **Storage:** S3, EBS, EFS
-- **Networking:** VPC, Route 53, ELB
-- **Security:** IAM, KMS
-- **DevOps Services:** CodeCommit, CodeBuild, CodeDeploy, CodePipeline
-- **Monitoring:** CloudWatch
+* AWS, Azure, GCP basics
+* Key services for DevOps:
 
-**Hands-on:**
-- Deploy a full CI/CD pipeline using AWS CodePipeline
+  * Compute: EC2, Lambda
+  * Storage: S3, EBS, EFS
+  * Networking: VPC, ELB, Route 53
+  * Security: IAM, KMS
+  * DevOps services: CodeCommit, CodeBuild, CodeDeploy, CodePipeline
+  * Monitoring: CloudWatch
 
 ---
 
 ## 📊 11. Monitoring & Logging
 
-### Prometheus & Grafana
-- Prometheus metrics collection
-- Grafana dashboards
-- Alertmanager setup
-
-### ELK Stack (Elasticsearch, Logstash, Kibana)
-- Centralized log management
-
-**Hands-on:**
-- Monitor Kubernetes cluster metrics with Prometheus & Grafana
+* Tools: Prometheus, Grafana, ELK Stack
+* Metrics collection, dashboards, alerts
+* Log aggregation and analysis
 
 ---
 
-## 🔐 12. Networking, Security & DevSecOps
+## 🔐 12. Security & DevSecOps
 
-**Key Topics**
-- TCP/IP, DNS, Load Balancing
-- SSL/TLS, HTTPS
-- Secrets management (HashiCorp Vault, AWS KMS)
-- Security Scanning (Trivy, SonarQube)
-- Shift-left Security approach
-
-**Hands-on:**
-- Integrate security scans in CI/CD pipeline
+* Secrets management: Vault, AWS KMS
+* Security scanning: Trivy, SonarQube
+* SSL/TLS, HTTPS, secure connections
+* Shift-left security in DevOps
 
 ---
 
-## 🧾 13. Scripting
+## 🧪 13. Scripting
 
-**Languages:**
-- **Bash** – Automate system tasks  
-- **Python** – Automate APIs, Infrastructure management  
-
-**Hands-on:**
-- Write a script to automate EC2 creation via AWS CLI
+* Bash scripting for automation
+* Python scripting for APIs, cloud provisioning, IaC
 
 ---
 
-## 🧠 14. Agile, ITIL & DevOps Culture
+## 🧠 14. Agile & ITIL Practices
 
-- Agile methodology (Scrum, Kanban)
-- ITIL processes: Incident, Problem, Change, Release Management
-- Shift-left and continuous feedback culture
-- Site Reliability Engineering (SRE) basics
+* Agile methodology (Scrum, Kanban)
+* ITIL processes: Incident, Problem, Change, Release Management
+* Site Reliability Engineering (SRE) basics
 
 ---
 
-## 🧪 15. Final DevOps Project (End-to-End)
+## 🏗️ 15. Hands-on DevOps Project
 
-**Objective:**
-Automate the deployment of a web application using DevOps pipeline.
+**Objective:** Automate deployment of a web application end-to-end.
 
 **Tech Stack Example:**
-- **Source Control:** GitHub  
-- **CI/CD:** Jenkins  
-- **Build Tool:** Maven  
-- **Artifact Repository:** Nexus  
-- **Containerization:** Docker  
-- **Orchestration:** Kubernetes  
-- **IaC:** Terraform  
-- **Monitoring:** Prometheus & Grafana  
-- **Cloud:** AWS  
 
-**Outcome:**
-A fully automated and monitored production-ready application pipeline.
+* Source Control: Git
+* CI/CD: Jenkins / GitHub Actions
+* Artifact: Nexus / Docker Registry
+* Containerization: Docker
+* Orchestration: Kubernetes
+* IaC: Terraform
+* Cloud: AWS
+* Monitoring: Prometheus & Grafana
+
+**Outcome:** Fully automated, monitored production-ready application pipeline.
 
 ---
 
 ## 🏁 Conclusion
 
-DevOps is not a single tool — it’s a **culture, a mindset, and a continuous learning journey**.  
-By mastering the tools above and understanding the principles behind them, you’ll be ready for any **DevOps Engineer** role in top organizations.
-
----
-
-📚 **Recommended Learning Order**
-1️⃣ Git → 2️⃣ Linux → 3️⃣ Jenkins → 4️⃣ Maven → 5️⃣ Docker → 6️⃣ Kubernetes → 7️⃣ Ansible → 8️⃣ Terraform → 9️⃣ AWS → 🔟 Monitoring → 🏁 Project
+DevOps is a **culture, mindset, and continuous learning journey**.
+By mastering the tools, Linux fundamentals, networking, and automation practices above, you’ll be ready for any **DevOps Engineer** role in top organizations.
 
 ---
