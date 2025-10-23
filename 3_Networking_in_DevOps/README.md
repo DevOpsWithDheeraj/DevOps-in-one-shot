@@ -1,4 +1,4 @@
-# 🌐 Networking in DevOps (Basics to Advanced)
+# 🌐 Networking in DevOps 
 
 ## 📘 Introduction
 
