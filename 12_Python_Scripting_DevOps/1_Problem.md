@@ -85,16 +85,6 @@ if __name__ == "__main__":
 
 ---
 
-### ✅ **Key Features Covered**
-
-1. **File Handling:** Reads multiple log files dynamically.
-2. **Regex Parsing:** Extracts timestamp, log level, and messages.
-3. **Data Aggregation:** Counts ERRORs and WARNINGs using `defaultdict`.
-4. **JSON Reporting:** Outputs structured summary for monitoring dashboards.
-5. **Email Alerts:** Automated alerting for critical errors.
-
----
-
 ## 🧩 **Step-by-Step Explanation**
 
 ### 1️⃣ **Imports and Configuration**
@@ -289,3 +279,14 @@ Email alert sent successfully.
 | **Reliability** | Exception handling during email send |
 
 ---
+
+### ✅ **Key Features Covered**
+
+1. **File Handling:** Reads multiple log files dynamically.
+2. **Regex Parsing:** Extracts timestamp, log level, and messages.
+3. **Data Aggregation:** Counts ERRORs and WARNINGs using `defaultdict`.
+4. **JSON Reporting:** Outputs structured summary for monitoring dashboards.
+5. **Email Alerts:** Automated alerting for critical errors.
+
+---
+
