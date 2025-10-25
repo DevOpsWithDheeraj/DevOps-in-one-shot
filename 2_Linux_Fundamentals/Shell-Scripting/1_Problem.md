@@ -81,7 +81,7 @@ for interface_name, interface_addresses in psutil.net_if_addrs().items():
 * `address.family == 2` → means it's an **IPv4** address (AF_INET).
 * `address.address` → actual IP address string.
 
-#### Ip Output
+#### Ip Addr Output
 
 ```
 Ethernet: 192.168.1.10
