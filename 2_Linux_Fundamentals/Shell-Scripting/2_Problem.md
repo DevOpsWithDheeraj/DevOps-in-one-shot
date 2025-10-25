@@ -213,6 +213,3 @@ for pod in pods["items"]:
 | CI/CD            | Git, Jenkins API, Ansible | Pipeline automation            |
 
 ---
-
-— and the script executes the corresponding module dynamically?
-It would look like a **complete DevOps Python automation project** ready for GitHub portfolio.
