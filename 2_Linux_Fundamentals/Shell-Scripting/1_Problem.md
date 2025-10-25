@@ -84,7 +84,7 @@ for interface_name, interface_addresses in psutil.net_if_addrs().items():
 
 ---
 
-#### ** Ip Output**
+#### Ip Output
 
 ```
 Ethernet: 192.168.1.10
