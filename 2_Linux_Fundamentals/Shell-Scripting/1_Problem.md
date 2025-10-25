@@ -4,8 +4,28 @@ Python Shell Scripting allows you to automate repetitive **system admin, CI/CD, 
 
 
 ---
+## 🔹 Example 1: Check Service Status and Restart if Down
 
-## 🔹 Example 1: System Health Monitoring Script
+```python
+#!/usr/bin/env python3
+import subprocess
+
+services = ["nginx", "sshd", "docker"]
+
+for service in services:
+    result = subprocess.run(["systemctl", "is-active", service], capture_output=True, text=True)
+    if "inactive" in result.stdout or "failed" in result.stdout:
+        print(f"{service} is down. Restarting...")
+        subprocess.run(["systemctl", "restart", service])
+    else:
+        print(f"{service} is running fine.")
+```
+
+✅ **Use case:** Health-check for DevOps-managed services.
+
+---
+
+## 🔹 Example 2: System Health Monitoring Script
 
 ```python
 #!/usr/bin/env python3
@@ -67,7 +87,7 @@ for interface_name, interface_addresses in psutil.net_if_addrs().items():
 
 ---
 
-### 🖥️ **Example Output**
+#### ** Ip Output**
 
 ```
 Ethernet: 192.168.1.10
@@ -89,27 +109,6 @@ Memory Usage: 68.9%
 Disk Usage: 42.1%
 Network: {'Wi-Fi': [snicaddr(family=2, address='192.168.1.10', ...)], ...}
 ```
-
----
-
-## 🔹 Example 2: Check Service Status and Restart if Down
-
-```python
-#!/usr/bin/env python3
-import subprocess
-
-services = ["nginx", "sshd", "docker"]
-
-for service in services:
-    result = subprocess.run(["systemctl", "is-active", service], capture_output=True, text=True)
-    if "inactive" in result.stdout or "failed" in result.stdout:
-        print(f"{service} is down. Restarting...")
-        subprocess.run(["systemctl", "restart", service])
-    else:
-        print(f"{service} is running fine.")
-```
-
-✅ **Use case:** Health-check for DevOps-managed services.
 
 ---
 
