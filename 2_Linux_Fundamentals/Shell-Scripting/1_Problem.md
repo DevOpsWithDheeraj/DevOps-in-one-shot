@@ -39,101 +39,6 @@ if __name__ == "__main__":
 
 ### 🧩 Line-by-Line Explanation
 
-#### `#!/usr/bin/env python3`
-
-* This is called a **shebang line**.
-* It tells the system to **execute the script using Python 3**.
-* Useful when running the script directly in Linux/Unix (e.g., `./sys_health.py`).
-
----
-
-#### `import os`
-
-* Imports the **os module**, which allows interaction with the **operating system**.
-* (Note: In this script, `os` isn’t directly used, but it’s often used for file/directory and environment operations.)
-
----
-
-#### `import psutil`
-
-* Imports the **psutil (process and system utilities)** library.
-* It provides system information like **CPU usage, memory, disk, network stats**, and more.
-
----
-
-#### `import platform`
-
-* Imports the **platform module**, which gives details about the **underlying OS, version, and hardware**.
-
----
-
-#### `from datetime import datetime`
-
-* Imports the **datetime** class from the **datetime** module.
-* Used to fetch the **current date and time** for the report.
-
----
-
-#### `def system_health():`
-
-* Defines a **function** named `system_health`.
-* The main logic for collecting and displaying system metrics resides here.
-
----
-
-#### `print(f"System Report: {platform.node()}")`
-
-* Prints a heading with the **system’s hostname** (machine name).
-* `platform.node()` → returns the system’s **network name** (e.g., `my-laptop`, `server01`).
-
----
-
-#### `print(f"Time: {datetime.now()}")`
-
-* Prints the **current timestamp** when the script runs.
-* `datetime.now()` → returns the current **local date and time**.
-
----
-
-#### `print(f"OS: {platform.system()} {platform.release()}")`
-
-* Prints the **operating system name and version**.
-* `platform.system()` → e.g., `'Windows'`, `'Linux'`, `'Darwin'`
-* `platform.release()` → e.g., `'10'`, `'5.15.0-100-generic'`
-
----
-
-#### `print("-" * 50)`
-
-* Prints a **separator line** made of 50 hyphens for better readability.
-
-  ```
-  --------------------------------------------------
-  ```
-
----
-
-#### `print(f"CPU Usage: {psutil.cpu_percent()}%")`
-
-* Shows the **CPU utilization percentage** at that moment.
-* `psutil.cpu_percent()` measures how much of the CPU is being used.
-
----
-
-#### `print(f"Memory Usage: {psutil.virtual_memory().percent}%")`
-
-* Displays the **percentage of memory (RAM)** currently in use.
-* `psutil.virtual_memory()` returns a memory stats object; `.percent` extracts the usage percentage.
-
----
-
-#### `print(f"Disk Usage: {psutil.disk_usage('/').percent}%")`
-
-* Shows **disk space usage** for the root directory `/` (main partition).
-* On Windows, you could replace `'/'` with `'C:\\'`.
-
----
-
 #### `print(f"Network: {psutil.net_if_addrs()}")`
 
 * Displays **network interface addresses** (like IPs, MAC addresses, etc.) for each adapter.
@@ -169,20 +74,6 @@ Ethernet: 192.168.1.10
 Wi-Fi: 192.168.0.105
 Loopback Pseudo-Interface 1: 127.0.0.1
 ```
-
----
-
-#### `if __name__ == "__main__":`
-
-* A **Python convention** that checks if the script is run **directly** (not imported as a module).
-* Ensures that the following code runs only when you execute the script yourself.
-
----
-
-#### `system_health()`
-
-* Calls the `system_health()` function.
-* When the script runs, this triggers all the print statements above to generate the report.
 
 ---
 
