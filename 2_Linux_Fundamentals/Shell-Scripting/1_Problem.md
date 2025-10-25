@@ -78,9 +78,6 @@ for interface_name, interface_addresses in psutil.net_if_addrs().items():
 ```
 
 ---
-
-### 🧩 **Explanation**
-
 * `psutil.net_if_addrs()` → gives a dictionary of interfaces and their addresses.
 * `address.family == 2` → means it's an **IPv4** address (AF_INET).
 * `address.address` → actual IP address string.
