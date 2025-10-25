@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
 ---
 
-##### ✅ **Simplified Version (Show Only IPv4 Addresses)**
+##### **Simplified Version (Show Only IPv4 Addresses)**
 
 ```python
 import psutil
