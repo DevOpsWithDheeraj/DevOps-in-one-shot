@@ -24,6 +24,11 @@ def system_health():
     print(f"Disk Usage: {psutil.disk_usage('/').percent}%")
     print(f"Network: {psutil.net_if_addrs()}")
 
+    for interface_name, interface_addresses in psutil.net_if_addrs().items():
+      for address in interface_addresses:
+         if address.family == 2:  # AF_INET (IPv4)
+            print(f"{interface_name}: {address.address}")
+
 if __name__ == "__main__":
     system_health()
 ```
@@ -133,6 +138,37 @@ if __name__ == "__main__":
 
 * Displays **network interface addresses** (like IPs, MAC addresses, etc.) for each adapter.
 * It prints a dictionary mapping each network interface (e.g., `eth0`, `Wi-Fi`) to its addresses.
+
+---
+
+### ✅ **Simplified Version (Show Only IPv4 Addresses)**
+
+```python
+import psutil
+
+for interface_name, interface_addresses in psutil.net_if_addrs().items():
+    for address in interface_addresses:
+        if address.family == 2:  # AF_INET (IPv4)
+            print(f"{interface_name}: {address.address}")
+```
+
+---
+
+### 🧩 **Explanation**
+
+* `psutil.net_if_addrs()` → gives a dictionary of interfaces and their addresses.
+* `address.family == 2` → means it's an **IPv4** address (AF_INET).
+* `address.address` → actual IP address string.
+
+---
+
+### 🖥️ **Example Output**
+
+```
+Ethernet: 192.168.1.10
+Wi-Fi: 192.168.0.105
+Loopback Pseudo-Interface 1: 127.0.0.1
+```
 
 ---
 
