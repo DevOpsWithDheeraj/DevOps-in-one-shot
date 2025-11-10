@@ -227,7 +227,7 @@ docker run -p 5000:5000 flask-app
 
 ---
 
-## ⚙️ **Multi-Stage Dockerfile **
+## ⚙️ **Multi-Stage Dockerfile**
 
 Multi-stage builds help to:
 
