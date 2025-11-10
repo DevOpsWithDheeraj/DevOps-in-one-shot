@@ -14,7 +14,7 @@ Think of it as a **recipe** for creating a Docker image:
 
 ```dockerfile
 # Step 1: Base image
-FROM python:3.9-slim
+FROM python:3.9-alpine
 
 # Step 2: Set working directory
 WORKDIR /app
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY . .
 
 # Step 4: Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install  -r requirements.txt
 
 # Step 5: Expose port
 EXPOSE 5000
