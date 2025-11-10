@@ -39,8 +39,8 @@ CMD ["python", "app.py"]
 ### 1️⃣ `FROM`
 
 Defines the **base image** — the starting point of your build. <br>
-Examples:
 
+Examples:
 ```dockerfile
 FROM ubuntu:20.04
 FROM python:3.9-alpine
