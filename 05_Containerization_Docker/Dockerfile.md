@@ -229,49 +229,125 @@ docker run -p 5000:5000 flask-app
 
 ## ⚙️ **Multi-Stage Dockerfile**
 
-Multi-stage builds help to:
+### 🧩 What is a Multi-Stage Dockerfile?
 
-* Reduce image size 🧩
-* Separate build tools from runtime environment 🧱
+A **Multi-Stage Dockerfile** allows you to use **multiple `FROM` statements** in a single Dockerfile — each creating a **separate build stage**.
 
-Example — building a Go application:
+👉 **Purpose:**
+To **reduce the final image size** and **separate build dependencies from runtime dependencies**.
 
-```dockerfile
-# ---------- Stage 1: Build ----------
-FROM golang:1.20 AS builder
-WORKDIR /app
+In simple terms:
 
-COPY . .
-RUN go build -o myapp .
-
-# ---------- Stage 2: Run ----------
-FROM alpine:latest
-WORKDIR /app
-
-# Copy only the compiled binary from the builder stage
-COPY --from=builder /app/myapp .
-
-CMD ["./myapp"]
-```
-
-### 🔍 Explanation:
-
-* **Stage 1 (builder)**: Uses the full Golang image to compile your code.
-* **Stage 2 (final)**: Copies only the final binary to a minimal Alpine image.
-* Result: Small, secure image with only what’s needed to run the app.
+> You compile or build your app in one stage (using a heavy image),
+> and then copy only the required files into a lightweight final image.
 
 ---
 
-## 🧠 **Analogy**
+### ⚙️ Why Multi-Stage Builds are Useful
 
-Think of it like a **restaurant kitchen**:
+| Problem (Without Multi-Stage)                                | Solution (With Multi-Stage)                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------- |
+| Final image is large (includes build tools, compilers, etc.) | Only the required binaries or files are copied to final image |
+| Manual cleanup required                                      | Automatically creates clean, small image                      |
+| Complex Dockerfile                                           | Cleaner, modular structure                                    |
 
-* `FROM` → The base kitchen setup.
-* `RUN` → Cooking ingredients.
-* `COPY` → Bringing ingredients in.
-* `CMD` → Serving the final dish.
-* `Multi-stage` → Cooking in one kitchen, plating in another (clean one).
+---
 
+### 🧱 Example: Multi-Stage Dockerfile (Node.js + Nginx)
+
+Let's say you have a React application that needs to be built and served using **Nginx**.
+
+---
+
+#### 🧾 Dockerfile
+
+```dockerfile
+# ---------- Stage 1: Build Stage ----------
+FROM node:18 AS builder
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source code and build the app
+COPY . .
+RUN npm run build
+
+# ---------- Stage 2: Production Stage ----------
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+
+# Copy build files from builder stage
+COPY --from=builder /app/build .
+
+# Expose port 80 and run Nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+---
+
+#### 🧠 Step-by-Step Explanation
+
+##### **Stage 1: Build (Node.js)**
+
+* `FROM node:18 AS builder` → use Node.js image for building.
+* `WORKDIR /app` → set working directory inside container.
+* `COPY package*.json ./` → copy dependency files first (for caching).
+* `RUN npm install` → install all dependencies.
+* `COPY . .` → copy all project files.
+* `RUN npm run build` → build the optimized production version (creates `/app/build` folder).
+
+##### **Stage 2: Run (Nginx)**
+
+* `FROM nginx:alpine` → lightweight image to serve static files.
+* `COPY --from=builder /app/build .` → copy built files from previous stage.
+* `EXPOSE 80` → expose port 80 for web traffic.
+* `CMD ["nginx", "-g", "daemon off;"]` → start Nginx in foreground.
+
+---
+
+### 📦 Build and Run the Docker Image
+
+```bash
+# Build the image
+docker build -t my-react-app .
+
+# Run the container
+docker run -d -p 8080:80 my-react-app
+```
+
+Now, open your browser and go to 👉 **[http://localhost:8080](http://localhost:8080)**
+You’ll see your React app running, built efficiently in just one Dockerfile.
+
+---
+
+### 🚀 Advantages of Multi-Stage Builds
+
+✅ Smaller image size
+✅ Faster deployment
+✅ Clean separation of build and runtime
+✅ Easier to maintain
+✅ No leftover build tools in final image
+
+---
+
+### 🧰 Bonus Example (Go Application)
+
+```dockerfile
+# Stage 1: Build
+FROM golang:1.20 AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o main .
+
+# Stage 2: Run
+FROM alpine
+WORKDIR /root/
+COPY --from=builder /app/main .
+CMD ["./main"]
+```
 ---
 
 ## 🧩 **Best Practices**
