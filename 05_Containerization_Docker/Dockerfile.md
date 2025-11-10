@@ -23,7 +23,7 @@ WORKDIR /app
 COPY . .
 
 # Step 4: Install dependencies
-RUN pip install  -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Step 5: Expose port
 EXPOSE 5000
