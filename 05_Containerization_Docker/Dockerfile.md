@@ -278,10 +278,10 @@ Think of it like a **restaurant kitchen**:
 
 ## 🧩 **Best Practices**
 
-✅ Use small base images like `alpine`
-✅ Combine multiple `RUN` commands to reduce layers
-✅ Use `.dockerignore` to skip unnecessary files
-✅ Use `multi-stage builds` for small and secure images
-✅ Keep secrets out of Dockerfiles
+✅ Use small base images like `alpine` <br>
+✅ Combine multiple `RUN` commands to reduce layers <br>
+✅ Use `.dockerignore` to skip unnecessary files <br>
+✅ Use `multi-stage builds` for small and secure images <br>
+✅ Keep secrets out of Dockerfiles <br>
 
 ---
