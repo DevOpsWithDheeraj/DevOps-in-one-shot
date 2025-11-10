@@ -10,7 +10,7 @@ Think of it as a **recipe** for creating a Docker image:
 
 ---
 
-## 🧱 **Basic Dockerfile Example**
+## 1. 🧱 **Basic Dockerfile **
 
 ```dockerfile
 # Step 1: Base image
@@ -227,7 +227,7 @@ docker run -p 5000:5000 flask-app
 
 ---
 
-## ⚙️ **Multi-Stage Dockerfile**
+## 2. ⚙️ **Multi-Stage Dockerfile**
 
 ### 🧩 What is a Multi-Stage Dockerfile?
 
