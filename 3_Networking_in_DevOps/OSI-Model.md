@@ -11,7 +11,7 @@ The **OSI (Open Systems Interconnection)** Model is a **conceptual framework** t
 It was developed by the **International Organization for Standardization (ISO)** to standardize communication between different systems — regardless of hardware, operating systems, or vendors.
 
 **Think of it like:**
-A **postal system** for computers — defining how your message (data) gets packaged, labeled, sent, routed, delivered, opened, and understood.
+> A **postal system** for computers — defining how your message (data) gets packaged, labeled, sent, routed, delivered, opened, and understood.
 
 ---
 
