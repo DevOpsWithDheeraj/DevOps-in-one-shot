@@ -165,11 +165,11 @@ The **postal trucks, roads, and airplanes** that physically move the letters.
 ## 🧭 **Data Flow – The Journey of a Packet**
 
 📤 **Sender (Top to Bottom):**
-Application → Presentation → Session → Transport → Network → Data Link → Physical
+Application → Presentation → Session → Transport → Network → Data Link → Physical <br>
 Each layer **adds its own header** (metadata) — this is called **Encapsulation**.
 
 📥 **Receiver (Bottom to Top):**
-Physical → Data Link → Network → Transport → Session → Presentation → Application
+Physical → Data Link → Network → Transport → Session → Presentation → Application <br>
 Each layer **removes its header** — this is **Decapsulation**.
 
 **Result:**
