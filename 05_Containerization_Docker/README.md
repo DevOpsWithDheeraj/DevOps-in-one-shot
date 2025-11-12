@@ -153,19 +153,29 @@ When you have **multiple containers** (e.g., backend, frontend, database), manag
 Example: `docker-compose.yml`
 
 ```yaml
-version: "3"
+version: '3.9'
+
 services:
   web:
-    image: nginx
+    image: nginx:latest
     ports:
       - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    depends_on:
+      - db
 
-  app:
-    build: .
-    ports:
-      - "5000:5000"
+  db:
+    image: mysql:8.0
     environment:
-      - DEBUG=true
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
 ```
 
 Commands:
