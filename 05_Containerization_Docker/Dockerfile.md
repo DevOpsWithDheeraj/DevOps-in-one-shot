@@ -325,37 +325,10 @@ You’ll see your React app running, built efficiently in just one Dockerfile.
 
 ### 🚀 Advantages of Multi-Stage Builds
 
-✅ Smaller image size
-✅ Faster deployment
-✅ Clean separation of build and runtime
-✅ Easier to maintain
-✅ No leftover build tools in final image
-
----
-
-### 🧰 Bonus Example (Go Application)
-
-```dockerfile
-# Stage 1: Build
-FROM golang:1.20 AS builder
-WORKDIR /app
-COPY . .
-RUN go build -o main .
-
-# Stage 2: Run
-FROM alpine
-WORKDIR /root/
-COPY --from=builder /app/main .
-CMD ["./main"]
-```
----
-
-## 🧩 **Best Practices**
-
-✅ Use small base images like `alpine` <br>
-✅ Combine multiple `RUN` commands to reduce layers <br>
-✅ Use `.dockerignore` to skip unnecessary files <br>
-✅ Use `multi-stage builds` for small and secure images <br>
-✅ Keep secrets out of Dockerfiles <br>
+✅ Smaller image size <br>
+✅ Faster deployment <br>
+✅ Clean separation of build and runtime <br>
+✅ Easier to maintain <br>
+✅ No leftover build tools in final image <br>
 
 ---
