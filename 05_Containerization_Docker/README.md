@@ -245,12 +245,3 @@ Now both containers can communicate using service names (`db`, `app`).
 
 ---
 
-## 🧭 **13. Summary – How Docker Fits in DevOps**
-
-Docker is at the **heart of DevOps pipelines**:
-
-* Used for **CI/CD**, **testing**, **deployment**, and **scaling**.
-* Integrated with tools like **Jenkins**, **Kubernetes**, **ArgoCD**, **SonarQube**, **Trivy**, etc.
-* Ensures **reproducibility, isolation, and automation**.
-
----
