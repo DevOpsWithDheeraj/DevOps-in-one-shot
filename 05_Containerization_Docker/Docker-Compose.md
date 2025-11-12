@@ -166,9 +166,9 @@ volumes:
 docker-compose up
 ```
 
-✅ Flask app will run on `http://localhost:5000`
-✅ MySQL runs in a separate container.
-✅ Compose automatically creates a **network** so `web` can connect to `db` using its service name (`db`).
+✅ Flask app will run on `http://localhost:5000` <br>
+✅ MySQL runs in a separate container. <br>
+✅ Compose automatically creates a **network** so `web` can connect to `db` using its service name (`db`). <br>
 
 ---
 
