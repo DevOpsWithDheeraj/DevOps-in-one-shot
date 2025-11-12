@@ -79,6 +79,8 @@ Containers have their own internal network. To access an app running inside a co
 Example:
 
 ```bash
+docker run -d -p host_port:container_port nginx
+
 docker run -d -p 8080:80 nginx
 ```
 
