@@ -8,6 +8,24 @@ It automates deployment, scaling, and management of containerized applications.
 
 ## 🧩 1. Kubernetes Architecture
 
+               +---------------------------+
+               |        Control Plane       |
+               |----------------------------|
+               |  API Server   | Scheduler  |
+               |  Controller   | ETCD       |
+               +---------------------------+
+                        |
+            -----------------------------------
+            |                 |                |
+     +--------------+   +--------------+   +--------------+
+     |  Worker Node |   |  Worker Node |   |  Worker Node |
+     |--------------|   |--------------|   |--------------|
+     |  Kubelet     |   |  Kubelet     |   |  Kubelet     |
+     |  Kube Proxy  |   |  Kube Proxy  |   |  Kube Proxy  |
+     |  Containers  |   |  Containers  |   |  Containers  |
+     +--------------+   +--------------+   +--------------+
+
+
 | Component | Description |
 |-----------|-------------|
 | **Master Node** | Controls the cluster (API Server, Controller Manager, Scheduler, etcd) |
