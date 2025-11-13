@@ -47,7 +47,7 @@ It makes global decisions (like scheduling and scaling) and detects/responds to 
 * All communication (kubectl, UI, or other components) happens through the API Server.
 * It exposes **REST APIs**.
 
-🧠 Think of it as the **“front desk”** of Kubernetes — all requests go through here.
+> 🧠 Think of it as the **“front desk”** of Kubernetes — all requests go through here.
 
 **Example:**
 When you run `kubectl apply -f deployment.yaml`, the command talks to the API Server.
@@ -60,7 +60,7 @@ When you run `kubectl apply -f deployment.yaml`, the command talks to the API Se
 * Stores info like: pods, secrets, config maps, nodes, etc.
 * It’s **highly available** and **consistent**.
 
-🧠 Think of it as **Kubernetes’ memory** — it remembers everything about the cluster.
+> 🧠 Think of it as **Kubernetes’ memory** — it remembers everything about the cluster.
 
 ---
 
@@ -75,7 +75,7 @@ When you run `kubectl apply -f deployment.yaml`, the command talks to the API Se
 * **Endpoint Controller** – manages service endpoints.
 * **Namespace Controller** – handles namespaces.
 
-🧠 Think of it as **the manager that makes sure things go as planned**.
+> 🧠 Think of it as **the manager that makes sure things go as planned**.
 
 ---
 
@@ -89,7 +89,7 @@ When you run `kubectl apply -f deployment.yaml`, the command talks to the API Se
   * Node affinity/taints/tolerations
   * Workload balance
 
-🧠 Think of it as a **smart dispatcher** that finds the right worker for each job.
+> 🧠 Think of it as a **smart dispatcher** that finds the right worker for each job.
 
 ---
 
@@ -107,7 +107,7 @@ Each node has several components:
 * Communicates with the **API Server**.
 * Ensures that the **pods** described in the control plane are running on the node.
 
-🧠 Think of it as a **node’s personal assistant** — it keeps containers running as told by the master.
+> 🧠 Think of it as a **node’s personal assistant** — it keeps containers running as told by the master.
 
 ---
 
@@ -117,7 +117,7 @@ Each node has several components:
 * Handles **service discovery** and **load balancing** between pods.
 * It routes traffic to the correct pod inside the cluster.
 
-🧠 Think of it as a **network router** for your node.
+> 🧠 Think of it as a **network router** for your node.
 
 ---
 
@@ -131,7 +131,7 @@ Each node has several components:
   * CRI-O
 * Kubernetes uses **Container Runtime Interface (CRI)** to talk to the runtime.
 
-🧠 Think of it as the **engine** that actually runs containers.
+> 🧠 Think of it as the **engine** that actually runs containers.
 
 ---
 
@@ -144,7 +144,7 @@ Each node has several components:
   * Network namespace (same IP)
   * Storage volumes
 
-🧠 Think of a Pod as a **wrapper around containers** that defines how they run together.
+> 🧠 Think of a Pod as a **wrapper around containers** that defines how they run together.
 
 ---
 
