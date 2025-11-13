@@ -1,4 +1,4 @@
-# 🏗️ Infrastructure as Code (IaC) with Terraform & CloudFormation 
+# 🏗️ Infrastructure as Code (IaC) 
 
 ## 📘 Introduction
 
