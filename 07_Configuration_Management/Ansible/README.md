@@ -1,6 +1,6 @@
 
 
-## 🧠 What is Ansible?
+#  What is Ansible?
 
 Ansible is an open-source automation tool used for IT configuration management, application deployment, orchestration, and provisioning.
 
