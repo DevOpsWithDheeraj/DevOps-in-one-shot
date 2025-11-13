@@ -11,16 +11,16 @@ It allows you to **isolate** and **organize** resources (like Pods, Services, De
 
 Namespaces help in:
 
-1. **Resource Isolation**
+1. **Resource Isolation** --
    Different teams or projects can deploy their workloads independently.
 
-2. **Access Control (RBAC)**
+2. **Access Control (RBAC)** --
    You can apply different permissions using **Role** and **RoleBinding** per namespace.
 
-3. **Resource Management**
+3. **Resource Management** --
    You can limit CPU/memory usage for each namespace using **ResourceQuota** and **LimitRange**.
 
-4. **Organization**
+4. **Organization** --
    Keeps your cluster clean — resources grouped logically by environment or application.
 
 ---
