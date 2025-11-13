@@ -5,9 +5,9 @@
 
 It allows you to **define, provision, and manage AWS infrastructure** using **code** written in **YAML** or **JSON** files called **CloudFormation templates**.
 
-👉 In short:
-Instead of clicking around the AWS Console to create resources like EC2, S3, or VPC —
-you **describe everything in a template**, and **CloudFormation automatically builds it for you**.
+> 👉 In short:
+> Instead of clicking around the AWS Console to create resources like EC2, S3, or VPC —
+> you **describe everything in a template**, and **CloudFormation automatically builds it for you**.
 
 ---
 
