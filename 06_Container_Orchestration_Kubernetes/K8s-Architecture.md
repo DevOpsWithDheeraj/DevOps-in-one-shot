@@ -221,6 +221,3 @@ kubectl apply -f deployment.yaml
 that continuously talk to maintain your **desired state**.
 
 ---
-
-Would you like me to include a **visual diagram (image)** of the architecture (Master–Worker communication flow)?
-I can generate a labeled diagram showing all components and their interactions.
