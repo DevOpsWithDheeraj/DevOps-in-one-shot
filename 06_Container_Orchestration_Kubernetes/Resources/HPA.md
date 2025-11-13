@@ -29,7 +29,7 @@ It ensures your application can **handle traffic spikes** without manual interve
 ## ⚡ **HPA Workflow**
 
 ```
-Metrics (CPU/Memory/Custom) → HPA → Adjust `# of Pods`
+Metrics (CPU/Memory/Custom) → HPA → Adjust    # no. of Pods
 ```
 
 Steps:
