@@ -1,16 +1,9 @@
-# ☸️ Container Orchestration with Kubernetes 
+# 🧠 What is Kubernetes (K8s)?
 
-## 📘 Introduction
+Kubernetes is an open-source container orchestration platform developed by Google (now maintained by CNCF).
+It automates deployment, scaling, and management of containerized applications.
 
-**Kubernetes (K8s)** is the leading **container orchestration platform** used in DevOps.  
-It manages **deployment, scaling, and networking of containers**, making multi-container applications reliable and self-healing.
-
-**Key Goals:**
-- Automate container deployment and management  
-- Enable high availability and scalability  
-- Self-healing: auto-restart, reschedule, replace failed containers  
-- Load balancing and service discovery  
-
+> You can think of Kubernetes as a “cluster manager” that takes your applications (in containers), runs them efficiently across machines, and ensures they are always healthy.
 ---
 
 ## 🧩 1. Kubernetes Architecture
