@@ -18,21 +18,21 @@ K8s helps you run **hundreds or thousands of containers** smoothly in production
 
 Without K8s:
 
-❌ If a container crashes → You must restart manually
-❌ If traffic increases → You must add containers manually
-❌ Load balancing must be configured manually
-❌ Hard to update apps without downtime
-❌ Hard to manage multiple containers
+❌ If a container crashes → You must restart manually <br>
+❌ If traffic increases → You must add containers manually <br>
+❌ Load balancing must be configured manually <br>
+❌ Hard to update apps without downtime <br>
+❌ Hard to manage multiple containers <br>
 
 With K8s:
 
-✔ Auto-restarts containers
-✔ Auto-scales containers using HPA
-✔ Auto load-balancing
-✔ Zero-downtime deployments
-✔ Rollback support
-✔ Manages configuration & secrets
-✔ Works across clusters (cloud/on-prem)
+✔ Auto-restarts containers <br>
+✔ Auto-scales containers using HPA <br>
+✔ Auto load-balancing <br>
+✔ Zero-downtime deployments <br>
+✔ Rollback support <br>
+✔ Manages configuration & secrets <br>
+✔ Works across clusters (cloud/on-prem) <br>
 
 ---
 
