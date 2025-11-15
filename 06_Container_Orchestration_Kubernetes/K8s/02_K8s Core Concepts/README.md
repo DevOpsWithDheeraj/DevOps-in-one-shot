@@ -1,0 +1,307 @@
+
+🚀 Kubernetes Core Concepts
+
+1️⃣ POD — The Smallest Deployable Unit
+
+A Pod is the smallest unit in Kubernetes.
+It contains one or more containers (usually Docker containers).
+
+🔥 Key Points
+
+One Pod = tightly coupled containers
+
+Each Pod has its own IP address
+
+Pods are ephemeral → K8s can delete or recreate anytime
+
+
+🎯 Example (one-container Pod)
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: myapp-container
+    image: nginx:latest
+
+💡 Use-case: Running a small Nginx web server.
+
+
+---
+
+2️⃣ ReplicaSet — Ensures Desired Number of Pods
+
+A ReplicaSet ensures how many Pods should always be running.
+
+🔥 Key Points
+
+Ensures high availability → keeps desired count
+
+If one Pod crashes, RS creates a new one
+
+Uses labels to identify/manage Pods
+
+
+🎯 Example
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+
+💡 Use-case: You want 3 replicas of your app for load-balancing & reliability.
+
+
+---
+
+3️⃣ Deployment — The Boss of ReplicaSets
+
+A Deployment manages:
+
+ReplicaSets
+
+Pod rollout & rollback
+
+Version upgrades (rolling updates)
+
+
+Deployments are the most commonly used workload in Kubernetes.
+
+🔥 Key Points
+
+Handles rolling updates (zero downtime)
+
+Supports rollbacks
+
+Automatically manages ReplicaSets
+
+
+🎯 Example
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+
+💡 Use-case: You want to update your app from nginx 1.20 → 1.21 without downtime
+K8s will roll pods one by one.
+
+
+---
+
+4️⃣ Service — Expose & Route Traffic to Pods
+
+A Service provides a stable endpoint (IP or DNS) to access pods.
+
+Since Pod IPs change frequently, Services give a fixed address.
+
+Types of Services
+
+Type	Purpose
+
+ClusterIP (default)	Accessible inside cluster only
+NodePort	Exposes service on node's port
+LoadBalancer	Exposes to internet (cloud)
+
+
+
+---
+
+🎯 Example: ClusterIP Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 80
+
+💡 Use-case: Internal communication such as
+Frontend → Backend service
+
+
+---
+
+🎯 Example: NodePort Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30080
+
+💡 Use-case: Access from browser using:
+<NodeIP>:30080
+
+
+---
+
+5️⃣ ConfigMap — Externalizing Non-Sensitive Configurations
+
+ConfigMaps store non-sensitive data such as:
+
+URLs
+
+Environment variables
+
+Config files
+
+
+🔥 Key Points
+
+Keeps config separate from image
+
+Can be passed as Env variables or mounted as files
+
+
+🎯 Example ConfigMap
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-config
+data:
+  APP_ENV: production
+  APP_COLOR: blue
+
+Use ConfigMap in Deployment
+
+env:
+- name: APP_ENV
+  valueFrom:
+    configMapKeyRef:
+      name: myapp-config
+      key: APP_ENV
+
+💡 Use-case: Changing app environment without rebuilding images.
+
+
+---
+
+6️⃣ Secret — Stores Sensitive Data
+
+Secrets store sensitive information, such as:
+
+Passwords
+
+Tokens
+
+API keys
+
+Database credentials
+
+
+Stored in Base64 encoded format (not encrypted but safer than plain text).
+
+🎯 Example Secret
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myapp-secret
+type: Opaque
+data:
+  DB_PASSWORD: cGFzc3dvcmQxMjM=   # base64 of password123
+
+Use Secret in Deployment
+
+env:
+- name: DB_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: myapp-secret
+      key: DB_PASSWORD
+
+💡 Use-case: Storing DB password securely.
+
+
+---
+
+🔗 How All Components Work Together (Real Example)
+
+Scenario: You deploy an Nginx-based web app
+
+K8s Component	Role
+
+Pod	Runs your app container
+ReplicaSet	Ensures 3 Pods are always available
+Deployment	Controls updates, rollbacks, scaling
+Service	Exposes app to internal/external network
+ConfigMap	Stores app settings like theme, URLs
+Secret	Stores DB username/password
+
+
+Flow
+
+1. Deployment creates a ReplicaSet
+
+
+2. ReplicaSet creates 3 Pods
+
+
+3. Service exposes Pods
+
+
+4. Pods read configs from ConfigMap
+
+
+5. Pods read secrets securely from Secret
+
+
+
+
+---
+
+🧠 Summary Table
+
+Concept	Purpose	Example
+
+Pod	Runs container	nginx pod
+ReplicaSet	Maintain pod count	3 replicas
+Deployment	App lifecycle mgmt	Rolling update
+Service	Stable networking	NodePort/ClusterIP
+ConfigMap	Non-sensitive config	APP_ENV=prod
+Secret	Sensitive data	DB password
+
+
+
+---
