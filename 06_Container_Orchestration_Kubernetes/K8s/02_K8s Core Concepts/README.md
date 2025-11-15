@@ -1,4 +1,5 @@
 
+
 🚀 Kubernetes Core Concepts
 
 1️⃣ POD — The Smallest Deployable Unit
