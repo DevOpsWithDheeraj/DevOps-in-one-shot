@@ -7,6 +7,7 @@ It automates deployment, scaling, and management of containerized applications.
 ---
 
 ## 🧩 1. Kubernetes Architecture
+```
 
                  +------------------+
                  |   kubectl CLI    |
@@ -28,6 +29,7 @@ It automates deployment, scaling, and management of containerized applications.
 | containerd         | containerd         | containerd      |
 | Pods               | Pods               | Pods            |
 -------------------------------------------------------------
+```
 
 | Component | Description |
 |-----------|-------------|
