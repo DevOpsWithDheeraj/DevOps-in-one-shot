@@ -36,7 +36,29 @@ With K8s:
 
 ---
 
-# 🧱 **K8s Architecture (Very Important for Interviews)**
+# 🧱 **K8s Architecture **
+
+```
+                 +-------------------------+
+                 |      Control Plane      |
+                 |-------------------------|
+                 |  API Server             |
+                 |  etcd                   |
+                 |  Scheduler              |
+                 |  Controller Manager     |
+                 +------------+------------+
+                              |
+        ------------------------------------------------------
+        |                     |                            |
++---------------+   +---------------+            +---------------+
+|   Worker 1    |   |   Worker 2    |            |   Worker 3    |
+|---------------|   |---------------|            |---------------|
+| kubelet       |   | kubelet       |            | kubelet       |
+| kube-proxy    |   | kube-proxy    |            | kube-proxy    |
+| containerd    |   | containerd    |            | containerd    |
+| Pods/Containers|  | Pods/Containers|           | Pods/Containers|
++---------------+   +---------------+            +---------------+
+```
 
 Kubernetes architecture has **two main components**:
 
@@ -267,34 +289,6 @@ Storage for database apps.
 ## **6️⃣ Namespace**
 
 Logical grouping of resources.
-
----
-
----
-
-# 🏗 **Kubernetes Architecture Diagram**
-
-```
-                 +-------------------------+
-                 |      Control Plane      |
-                 |-------------------------|
-                 |  API Server             |
-                 |  etcd                   |
-                 |  Scheduler              |
-                 |  Controller Manager     |
-                 +------------+------------+
-                              |
-        ------------------------------------------------------
-        |                     |                            |
-+---------------+   +---------------+            +---------------+
-|   Worker 1    |   |   Worker 2    |            |   Worker 3    |
-|---------------|   |---------------|            |---------------|
-| kubelet       |   | kubelet       |            | kubelet       |
-| kube-proxy    |   | kube-proxy    |            | kube-proxy    |
-| containerd    |   | containerd    |            | containerd    |
-| Pods/Containers|  | Pods/Containers|           | Pods/Containers|
-+---------------+   +---------------+            +---------------+
-```
 
 ---
 
