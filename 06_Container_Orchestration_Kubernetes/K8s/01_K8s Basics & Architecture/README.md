@@ -36,7 +36,7 @@ With K8s:
 
 ---
 
-# 🧱 **K8s Architecture **
+# 🧱 **K8s Architecture**
 
 ```
                  +-------------------------+
@@ -50,14 +50,14 @@ With K8s:
                               |
         ------------------------------------------------------
         |                     |                            |
-+---------------+   +---------------+            +---------------+
-|   Worker 1    |   |   Worker 2    |            |   Worker 3    |
-|---------------|   |---------------|            |---------------|
-| kubelet       |   | kubelet       |            | kubelet       |
-| kube-proxy    |   | kube-proxy    |            | kube-proxy    |
-| containerd    |   | containerd    |            | containerd    |
-| Pods/Containers|  | Pods/Containers|           | Pods/Containers|
-+---------------+   +---------------+            +---------------+
+      +---------------+   +---------------+            +---------------+
+     |   Worker 1    |   |   Worker 2    |            |   Worker 3    |
+     |---------------|   |---------------|            |---------------|
+     | kubelet       |   | kubelet       |            | kubelet       |
+     | kube-proxy    |   | kube-proxy    |            | kube-proxy    |
+     | containerd    |   | containerd    |            | containerd    |
+     | Pods/Containers|  | Pods/Containers|           | Pods/Containers|
+     +---------------+   +---------------+            +---------------+
 ```
 
 Kubernetes architecture has **two main components**:
