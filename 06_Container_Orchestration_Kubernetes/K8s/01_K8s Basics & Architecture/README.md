@@ -39,25 +39,25 @@ With K8s:
 # 🧱 **K8s Architecture**
 
 ```
-                 +-------------------------+
-                 |      Control Plane      |
-                 |-------------------------|
-                 |  API Server             |
-                 |  etcd                   |
-                 |  Scheduler              |
-                 |  Controller Manager     |
-                 +------------+------------+
-                              |
-        ------------------------------------------------------
-        |                     |                            |
-      +---------------+   +---------------+            +---------------+
-     |   Worker 1    |   |   Worker 2    |            |   Worker 3    |
-     |---------------|   |---------------|            |---------------|
-     | kubelet       |   | kubelet       |            | kubelet       |
-     | kube-proxy    |   | kube-proxy    |            | kube-proxy    |
-     | containerd    |   | containerd    |            | containerd    |
-     | Pods/Containers|  | Pods/Containers|           | Pods/Containers|
-     +---------------+   +---------------+            +---------------+
+                        +-------------------------+
+                        |      Control Plane      |
+                        |-------------------------|
+                        |  API Server             |
+                        |  etcd                   |
+                        |  Scheduler              |
+                        |  Controller Manager     |
+                        +------------+------------+
+                                     |
+        ---------------------------------------------------------------
+            |                        |                              |
+     +---------------+     +---------------+            +---------------+
+     |   Worker 1    |     |   Worker 2    |            |   Worker 3    |
+     |---------------|     |--------------- |           |---------------|
+     | kubelet       |     | kubelet        |           | kubelet       |
+     | kube-proxy    |     | kube-proxy     |           | kube-proxy    |
+     | containerd    |     | containerd     |           | containerd    |
+     | Pods/Containers|    | Pods/Containers|           | Pods/Containers|
+     +---------------+     +---------------+            +---------------+
 ```
 
 Kubernetes architecture has **two main components**:
