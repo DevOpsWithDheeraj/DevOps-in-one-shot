@@ -320,8 +320,6 @@ spec:
 * Only allows **incoming traffic** from Pods labeled `role: frontend` on TCP port 8080.
 * All other traffic to backend Pods is **blocked**.
 
----
-
 💡 **Tip:** Without NetworkPolicies, Kubernetes networking is **open by default**. Think of NetworkPolicies as **rules for who can talk to whom** inside your cluster.
 
 ---
