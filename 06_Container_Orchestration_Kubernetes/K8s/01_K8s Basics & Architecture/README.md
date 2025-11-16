@@ -21,8 +21,6 @@ Kubernetes (K8s) is an **open-source container orchestration platform** that aut
 
 K8s has a **master-worker architecture**.
 
-### **A. Components**
-
 ### **1. Master Node (Control Plane) 🖥️**
 
 Manages the cluster.
