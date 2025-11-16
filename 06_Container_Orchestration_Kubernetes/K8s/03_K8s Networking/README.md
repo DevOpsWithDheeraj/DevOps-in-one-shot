@@ -12,7 +12,7 @@ It ensures:
 3. **External access** through Services like NodePort, LoadBalancer, and Ingress.
 4. **Network isolation** and security using Network Policies.
 
-### **Key Principles**
+### **Key Principles:**
 
 1. **Every Pod gets a unique IP address.**
 
@@ -24,7 +24,7 @@ It ensures:
 
 4. **Network Policies can restrict traffic** to enforce security rules.
 
-### **Components of Kubernetes Networking**
+### **Components of Kubernetes Networking:**
 
 | Component              | Role                                                       |
 | ---------------------- | ---------------------------------------------------------- |
