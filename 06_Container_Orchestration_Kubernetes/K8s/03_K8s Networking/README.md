@@ -151,7 +151,6 @@ spec:
 💡 **Extra Tip:**
 
 * In **bare-metal clusters** (no cloud), LoadBalancer won’t work out-of-the-box; you’d need solutions like **MetalLB** to simulate this functionality.
-* 
 ---
 
 # 2️⃣ **Ingress – Layer 7 (HTTP/HTTPS Routing)**
