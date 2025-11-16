@@ -23,7 +23,7 @@ K8s has a **master-worker architecture**.
 
 ### **1. Master Node (Control Plane) 🖥️**
 
-Manages the cluster.
+It is the brain of the Cluster. Manages the cluster.
 
 | Component                       | Function                                                                       |
 | ------------------------------- | ------------------------------------------------------------------------------ |
