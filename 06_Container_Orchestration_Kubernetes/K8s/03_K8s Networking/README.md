@@ -30,7 +30,6 @@ It ensures:
 | **Network Policies**   | Define rules to allow or block traffic between Pods.       |
 
 💡 **Tip:** You can think of Kubernetes networking as a **well-organized city**:
-
 * Pods are houses with unique addresses (IPs).
 * Services are apartment complexes with a main entrance (stable IP).
 * Ingress is the city gate controlling who can enter.
