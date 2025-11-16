@@ -14,13 +14,9 @@ It ensures:
 ### **Key Principles:**
 
 1. **Every Pod gets a unique IP address.**
-
    * Pods can communicate directly using their IP.
-
 2. **Pods can communicate with all other Pods** by default, across nodes, without NAT.
-
 3. **Services provide stable endpoints** for Pods that may change IPs.
-
 4. **Network Policies can restrict traffic** to enforce security rules.
 
 ### **Components of Kubernetes Networking:**
