@@ -64,42 +64,57 @@ spec:
 
 # 🔹 2. NodePort Service
 
-Exposes your application **on each node’s IP at a static port (30000–32767)**.
+In Kubernetes, **NodePort** is another **Service type** that allows you to expose your application **outside the cluster**. 
 
-### 📌 When to use?
+---
 
-* Minikube / Kind
-* No cloud load balancer
-* Simple external access
+## **1. Definition**
 
-### Access Format
+A **NodePort service** exposes a service on a **static port on each Node** of the Kubernetes cluster. This allows external clients to access your service using:
 
 ```
-http://NodeIP:NodePort
+<NodeIP>:<NodePort>
 ```
 
-### Diagram
+* **NodeIP** → IP of any node in the cluster
+* **NodePort** → port assigned by Kubernetes (default range: **30000–32767**) or manually defined.
 
-```
-Client → NodeIP:NodePort → ClusterIP → Pods
-```
+---
 
-### YAML
+### **2. How it works**
+
+1. Kubernetes assigns a **ClusterIP** (internal IP) to the service, just like ClusterIP.
+2. It also allocates a **NodePort**.
+3. Traffic coming to `<NodeIP>:<NodePort>` is forwarded to the **ClusterIP**, which then routes it to the matching Pods.
+
+This means NodePort is basically **ClusterIP + external exposure via node port**.
+
+---
+
+### **3. Example YAML**
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-nodeport
+  name: my-nodeport-service
 spec:
-  type: NodePort
   selector:
-    app: webapp
+    app: my-app
+  type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30080
+    - protocol: TCP
+      port: 80         # Service port
+      targetPort: 8080 # Pod port
+      nodePort: 30080  # Optional: static NodePort, else Kubernetes assigns one
 ```
+
+* **`port`** → internal cluster port
+* **`targetPort`** → pod port receiving traffic
+* **`nodePort`** → port on all cluster nodes exposed externally
+* **`type: NodePort`** → enables access from outside
+
+💡 **Tip:** NodePort is simple but not ideal for production in large clusters, because exposing many NodePorts can get messy. For production, **LoadBalancer** is preferred.
 
 ---
 
