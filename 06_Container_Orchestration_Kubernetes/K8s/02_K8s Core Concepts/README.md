@@ -1,23 +1,21 @@
 
 
-🚀 Kubernetes Core Concepts
+# 🚀 **Kubernetes Core Concepts**
 
-1️⃣ POD — The Smallest Deployable Unit
+## 1️⃣ **POD — The Smallest Deployable Unit**
 
-A Pod is the smallest unit in Kubernetes.
-It contains one or more containers (usually Docker containers).
+A **Pod** is the smallest unit in Kubernetes.
+It **contains one or more containers** (usually Docker containers).
 
-🔥 Key Points
+### 🔥 Key Points
 
-One Pod = tightly coupled containers
+* One Pod = tightly coupled containers
+* Each Pod has its own **IP address**
+* Pods are *ephemeral* → K8s can delete or recreate anytime
 
-Each Pod has its own IP address
+### 🎯 Example (one-container Pod)
 
-Pods are ephemeral → K8s can delete or recreate anytime
-
-
-🎯 Example (one-container Pod)
-
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -26,27 +24,25 @@ spec:
   containers:
   - name: myapp-container
     image: nginx:latest
+```
 
-💡 Use-case: Running a small Nginx web server.
-
+💡 **Use-case**: Running a small Nginx web server.
 
 ---
 
-2️⃣ ReplicaSet — Ensures Desired Number of Pods
+## 2️⃣ **ReplicaSet — Ensures Desired Number of Pods**
 
-A ReplicaSet ensures how many Pods should always be running.
+A ReplicaSet ensures **how many Pods** should always be running.
 
-🔥 Key Points
+### 🔥 Key Points
 
-Ensures high availability → keeps desired count
+* Ensures **high availability** → keeps desired count
+* If one Pod crashes, RS creates a new one
+* Uses **labels** to identify/manage Pods
 
-If one Pod crashes, RS creates a new one
+### 🎯 Example
 
-Uses labels to identify/manage Pods
-
-
-🎯 Example
-
+```yaml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -64,36 +60,31 @@ spec:
       containers:
       - name: nginx
         image: nginx
+```
 
-💡 Use-case: You want 3 replicas of your app for load-balancing & reliability.
-
+💡 **Use-case**: You want **3 replicas** of your app for load-balancing & reliability.
 
 ---
 
-3️⃣ Deployment — The Boss of ReplicaSets
+## 3️⃣ **Deployment — The Boss of ReplicaSets**
 
 A Deployment manages:
 
-ReplicaSets
+* ReplicaSets
+* Pod rollout & rollback
+* Version upgrades (rolling updates)
 
-Pod rollout & rollback
+Deployments are the **most commonly used** workload in Kubernetes.
 
-Version upgrades (rolling updates)
+### 🔥 Key Points
 
+* Handles **rolling updates** (zero downtime)
+* Supports **rollbacks**
+* Automatically manages ReplicaSets
 
-Deployments are the most commonly used workload in Kubernetes.
+### 🎯 Example
 
-🔥 Key Points
-
-Handles rolling updates (zero downtime)
-
-Supports rollbacks
-
-Automatically manages ReplicaSets
-
-
-🎯 Example
-
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -111,33 +102,32 @@ spec:
       containers:
       - name: nginx
         image: nginx:1.21
+```
 
-💡 Use-case: You want to update your app from nginx 1.20 → 1.21 without downtime
+💡 **Use-case**: You want to update your app from nginx 1.20 → 1.21 **without downtime**
 K8s will roll pods one by one.
-
 
 ---
 
-4️⃣ Service — Expose & Route Traffic to Pods
+## 4️⃣ **Service — Expose & Route Traffic to Pods**
 
 A Service provides a stable endpoint (IP or DNS) to access pods.
 
-Since Pod IPs change frequently, Services give a fixed address.
+Since Pod IPs change frequently, Services give a **fixed address**.
 
-Types of Services
+### Types of Services
 
-Type	Purpose
-
-ClusterIP (default)	Accessible inside cluster only
-NodePort	Exposes service on node's port
-LoadBalancer	Exposes to internet (cloud)
-
-
+| Type                | Purpose                            |
+| ------------------- | ---------------------------------- |
+| ClusterIP (default) | Accessible **inside cluster only** |
+| NodePort            | Exposes service on **node's port** |
+| LoadBalancer        | Exposes to **internet** (cloud)    |
 
 ---
 
-🎯 Example: ClusterIP Service
+### 🎯 Example: ClusterIP Service
 
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -148,15 +138,16 @@ spec:
   ports:
   - port: 80
     targetPort: 80
+```
 
-💡 Use-case: Internal communication such as
+💡 **Use-case**: Internal communication such as
 Frontend → Backend service
-
 
 ---
 
-🎯 Example: NodePort Service
+### 🎯 Example: NodePort Service
 
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -169,33 +160,29 @@ spec:
   - port: 80
     targetPort: 80
     nodePort: 30080
+```
 
-💡 Use-case: Access from browser using:
-<NodeIP>:30080
-
+💡 **Use-case**: Access from browser using:
+`<NodeIP>:30080`
 
 ---
 
-5️⃣ ConfigMap — Externalizing Non-Sensitive Configurations
+## 5️⃣ **ConfigMap — Externalizing Non-Sensitive Configurations**
 
-ConfigMaps store non-sensitive data such as:
+ConfigMaps store **non-sensitive** data such as:
 
-URLs
+* URLs
+* Environment variables
+* Config files
 
-Environment variables
+### 🔥 Key Points
 
-Config files
+* Keeps config separate from image
+* Can be passed as **Env variables** or **mounted as files**
 
+### 🎯 Example ConfigMap
 
-🔥 Key Points
-
-Keeps config separate from image
-
-Can be passed as Env variables or mounted as files
-
-
-🎯 Example ConfigMap
-
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -203,38 +190,37 @@ metadata:
 data:
   APP_ENV: production
   APP_COLOR: blue
+```
 
-Use ConfigMap in Deployment
+### Use ConfigMap in Deployment
 
+```yaml
 env:
 - name: APP_ENV
   valueFrom:
     configMapKeyRef:
       name: myapp-config
       key: APP_ENV
+```
 
-💡 Use-case: Changing app environment without rebuilding images.
-
+💡 **Use-case**: Changing app environment **without rebuilding images**.
 
 ---
 
-6️⃣ Secret — Stores Sensitive Data
+## 6️⃣ **Secret — Stores Sensitive Data**
 
-Secrets store sensitive information, such as:
+Secrets store **sensitive information**, such as:
 
-Passwords
+* Passwords
+* Tokens
+* API keys
+* Database credentials
 
-Tokens
+Stored in **Base64 encoded** format (not encrypted but safer than plain text).
 
-API keys
+### 🎯 Example Secret
 
-Database credentials
-
-
-Stored in Base64 encoded format (not encrypted but safer than plain text).
-
-🎯 Example Secret
-
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -242,67 +228,55 @@ metadata:
 type: Opaque
 data:
   DB_PASSWORD: cGFzc3dvcmQxMjM=   # base64 of password123
+```
 
-Use Secret in Deployment
+### Use Secret in Deployment
 
+```yaml
 env:
 - name: DB_PASSWORD
   valueFrom:
     secretKeyRef:
       name: myapp-secret
       key: DB_PASSWORD
+```
 
-💡 Use-case: Storing DB password securely.
-
+💡 **Use-case**: Storing DB password securely.
 
 ---
 
-🔗 How All Components Work Together (Real Example)
+# 🔗 How All Components Work Together (Real Example)
 
-Scenario: You deploy an Nginx-based web app
+### Scenario: You deploy an Nginx-based web app
 
-K8s Component	Role
+| K8s Component  | Role                                     |
+| -------------- | ---------------------------------------- |
+| **Pod**        | Runs your app container                  |
+| **ReplicaSet** | Ensures 3 Pods are always available      |
+| **Deployment** | Controls updates, rollbacks, scaling     |
+| **Service**    | Exposes app to internal/external network |
+| **ConfigMap**  | Stores app settings like theme, URLs     |
+| **Secret**     | Stores DB username/password              |
 
-Pod	Runs your app container
-ReplicaSet	Ensures 3 Pods are always available
-Deployment	Controls updates, rollbacks, scaling
-Service	Exposes app to internal/external network
-ConfigMap	Stores app settings like theme, URLs
-Secret	Stores DB username/password
-
-
-Flow
+### Flow
 
 1. Deployment creates a ReplicaSet
-
-
 2. ReplicaSet creates 3 Pods
-
-
 3. Service exposes Pods
-
-
 4. Pods read configs from ConfigMap
-
-
 5. Pods read secrets securely from Secret
-
-
-
 
 ---
 
-🧠 Summary Table
+# 🧠 Summary Table
 
-Concept	Purpose	Example
-
-Pod	Runs container	nginx pod
-ReplicaSet	Maintain pod count	3 replicas
-Deployment	App lifecycle mgmt	Rolling update
-Service	Stable networking	NodePort/ClusterIP
-ConfigMap	Non-sensitive config	APP_ENV=prod
-Secret	Sensitive data	DB password
-
-
+| Concept        | Purpose              | Example            |
+| -------------- | -------------------- | ------------------ |
+| **Pod**        | Runs container       | nginx pod          |
+| **ReplicaSet** | Maintain pod count   | 3 replicas         |
+| **Deployment** | App lifecycle mgmt   | Rolling update     |
+| **Service**    | Stable networking    | NodePort/ClusterIP |
+| **ConfigMap**  | Non-sensitive config | APP_ENV=prod       |
+| **Secret**     | Sensitive data       | DB password        |
 
 ---
