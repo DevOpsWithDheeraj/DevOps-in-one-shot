@@ -120,7 +120,6 @@ A **LoadBalancer service** creates an **external IP** that routes traffic to you
 
 * It uses the cloud provider’s (AWS, GCP, Azure) native load balancer.
 * Internally, it still uses a **ClusterIP**, so traffic is routed to Pods via the cluster network.
----
 
 ### **How it works**
 
