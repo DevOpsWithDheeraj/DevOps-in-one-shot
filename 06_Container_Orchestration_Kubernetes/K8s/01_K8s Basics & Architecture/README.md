@@ -11,7 +11,7 @@ Kubernetes (K8s) is an **open-source container orchestration platform** that aut
 * Service discovery & load balancing.
 
 **Example:**
-You have a web application running in Docker containers. Instead of manually managing 10 containers across 3 servers, K8s handles deployment, scaling, and health checks automatically.
+> You have a web application running in Docker containers. Instead of manually managing 10 containers across 3 servers, K8s handles deployment, scaling, and health checks automatically.
 
 ---
 
