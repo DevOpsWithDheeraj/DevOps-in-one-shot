@@ -21,7 +21,7 @@ K8s has a **master-worker architecture**.
 
 ### **A. Components**
 
-### **Master Node (Control Plane)**
+### **1. Master Node (Control Plane)**
 
 Manages the cluster.
 
@@ -32,7 +32,7 @@ Manages the cluster.
 | **Controller Manager**          | Ensures cluster desired state matches actual state (replicas, nodes, etc.). |
 | **Scheduler**                   | Assigns workloads (Pods) to worker nodes based on resources and policies.   |
 
-### **Worker Node**
+### **2. Worker Node**
 
 Runs the application workloads.
 
