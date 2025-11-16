@@ -11,10 +11,10 @@ Kubernetes networking is built on **4 golden rules**:
 
 To handle this, Kubernetes provides:
 
-✔ **Services** (Stable IP)
-✔ **Ingress** (Smart L7 routing)
-✔ **CNI Plugins** (Pod networking)
-✔ **Network Policies** (Firewall rules)
+✔ **Services** (Stable IP) <br>
+✔ **Ingress** (Smart L7 routing) <br>
+✔ **CNI Plugins** (Pod networking) <br>
+✔ **Network Policies** (Firewall rules) <br>
 
 ---
 
