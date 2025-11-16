@@ -2,30 +2,30 @@
 
 # 🚀 **Kubernetes Networking**
 
-Kubernetes networking is built on 4 golden rules:
+Kubernetes networking is built on **4 golden rules**:
 
-1️⃣ **Every Pod gets its own unique IP** <br>
-2️⃣ **All Pods can communicate with all other Pods (flat network)** <br>
-3️⃣ **Node IPs and Pod IPs are separate** <br>
-4️⃣ **Pods are ephemeral → IPs change** <br>
-So… Kubernetes provides **Services**, **Ingress**, and **CNI plugins** to solve networking challenges. <br>
+1️⃣ **Every Pod gets its own unique IP**
+2️⃣ **All Pods can communicate with all other Pods (flat network)**
+3️⃣ **Node IPs and Pod IPs are different**
+4️⃣ **Pods are ephemeral → Pod IPs keep changing**
+
+To handle this, Kubernetes provides:
+
+✔ **Services** (Stable IP)
+✔ **Ingress** (Smart L7 routing)
+✔ **CNI Plugins** (Pod networking)
+✔ **Network Policies** (Firewall rules)
 
 ---
 
 # 1️⃣ **Service Networking in Kubernetes**
 
-A **Service** provides a **stable, permanent virtual IP (ClusterIP)** for a group of Pods.
+A **Service** provides a **stable, permanent virtual IP (ClusterIP)** for a set of Pods.
 
-Pods may die and get recreated → new IPs,
-But the **Service IP remains constant**.
+Pods may die → new Pod gets a new IP,
+but the **Service IP never changes**.
 
-There are 3 main Service types:
-
-### ✔ **ClusterIP**
-
-### ✔ **NodePort**
-
-### ✔ **LoadBalancer**
+There are **3 main Service types**:
 
 ---
 
@@ -35,26 +35,24 @@ ClusterIP exposes your application **inside the cluster only**.
 
 ### 📌 When to use?
 
-* Communication between **backend ↔ database**
-* Internal microservices need to talk to each other
+* Backend ↔ Database communication
+* Internal microservice communication
 
-### 📌 Example
-
-Frontend can call backend using:
+### Example
 
 ```
 http://backend-service:8080
 ```
 
-Even if backend pods change IPs, the Service always routes traffic to the correct pods using **labels**.
+Even if Pods restart, service always routes to correct Pods using labels.
 
-### 🔹 How it works:
+### Diagram
 
 ```
 Frontend Pod → ClusterIP Service → Backend Pods
 ```
 
-### YAML Example
+### YAML
 
 ```yaml
 apiVersion: v1
@@ -73,13 +71,13 @@ spec:
 
 # 🔹 2. NodePort Service
 
-NodePort exposes your application **on each node’s IP at a static port (30000–32767)**.
+Exposes your application **on each node’s IP at a static port (30000–32767)**.
 
 ### 📌 When to use?
 
-* Local cluster (Minikube, Kind)
-* No cloud load balancer available
-* Simple external access for testing
+* Minikube / Kind
+* No cloud load balancer
+* Simple external access
 
 ### Access Format
 
@@ -87,19 +85,13 @@ NodePort exposes your application **on each node’s IP at a static port (30000�
 http://NodeIP:NodePort
 ```
 
-Example:
+### Diagram
 
 ```
-http://192.168.1.10:30080
+Client → NodeIP:NodePort → ClusterIP → Pods
 ```
 
-### 🔹 How it works:
-
-```
-Client → NodeIP:NodePort → ClusterIP Service → Pods
-```
-
-### YAML Example
+### YAML
 
 ```yaml
 apiVersion: v1
@@ -120,28 +112,27 @@ spec:
 
 # 🔹 3. LoadBalancer Service
 
-LoadBalancer exposes your Service to the **public internet** using the **cloud provider’s LB**
-(e.g., AWS ELB, GCP LB, Azure LB).
+Creates a **cloud provider Load Balancer** (AWS, GCP, Azure).
 
 ### 📌 When to use?
 
-* Production workloads
-* Need internet-facing app
-* Auto-assign external IP
+* Production
+* Public-facing apps
+* HTTP / TCP apps needing external IP
 
 ### Access Format
 
 ```
-http://ExternalLoadBalancerIP
+http://External-LB-IP
 ```
 
-### 🔹 How it works:
+### Diagram
 
 ```
 Internet → Cloud Load Balancer → NodePort → ClusterIP → Pods
 ```
 
-### YAML Example
+### YAML
 
 ```yaml
 apiVersion: v1
@@ -159,37 +150,29 @@ spec:
 
 ---
 
-# 2️⃣ **Ingress – Layer 7 (HTTP/HTTPS) Routing**
+# 2️⃣ **Ingress – Layer 7 (HTTP/HTTPS Routing)**
 
-A **LoadBalancer** is fine for 1 service.
-But imagine 20 services → 20 load balancers = **expensive**.
+LoadBalancer is good for ONE service.
+But 20 services → 20 load balancers = 💸 expensive.
 
 Ingress solves this.
 
-### ✔ Ingress = Smart HTTP/HTTPS router
+### ✔ Features
 
-✔ Works at **application layer (layer 7)**
-✔ Exposes multiple services using **ONE LoadBalancer**
+* One LoadBalancer for many services
+* Domain-based routing
+* Path-based routing
+* TLS termination
 
----
-
-# 🔹 Example Use Case
-
-You want:
-
-* `/` → frontend service
-* `/api` → backend service
-* `/auth` → authentication service
-
-### Ingress Routing
+### Example Routing
 
 ```
-example.com/      → frontend-service
-example.com/api   → backend-service
+example.com/      → frontend
+example.com/api   → backend
 example.com/auth  → auth-service
 ```
 
-### Ingress YAML Example
+### YAML
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -217,114 +200,183 @@ spec:
               number: 8080
 ```
 
-### 🔹 How Ingress Works:
+### Diagram
 
 ```
 Internet
    ↓
-Cloud Load Balancer (1 LB only)
+Cloud LoadBalancer
    ↓
 Ingress Controller (NGINX/Traefik/Istio)
    ↓
-Routes to correct Service
+Routes to correct services
 ```
 
 ---
 
 # 3️⃣ **CNI – Container Network Interface**
 
-Kubernetes does NOT implement low-level networking itself.
-Instead, it uses **CNI plugins** to create Pod networking.
+Kubernetes itself does NOT create Pod networking.
+CNI plugins do that.
 
-### ✔ **CNI = How Pods get IPs & how routing is built**
+### ✔ CNI Responsibilities
 
----
+1️⃣ Assign Pod IP
+2️⃣ Create veth pairs
+3️⃣ Setup routing between nodes
+4️⃣ Overlay / Underlay networking
+5️⃣ Implement Network Policies
 
-# Popular CNI Providers
+### Popular CNI Plugins
 
-### 1. **Calico**
-
-* L3 routing
-* Network Policies
-* Production-grade
-* Cloud + on-prem
-
-### 2. **Flannel**
-
-* Simple overlay network
-* VXLAN-based
-* Easy to set up
-
-### 3. **Weave**
-
-* Auto mesh networking
-* Simple encryption
-
-### 4. **Cilium (eBPF-based)**
-
-* High performance
-* Advanced security
-* Great for production
+| CNI               | Highlights                   |
+| ----------------- | ---------------------------- |
+| **Calico**        | Network policy, BGP, fast    |
+| **Flannel**       | Very simple, overlay (VXLAN) |
+| **Weave**         | Automatic mesh, encryption   |
+| **Cilium (eBPF)** | High performance, security   |
 
 ---
 
-# 🔹 What CNIs Actually Do?
+# 🔹 What Happens When a Pod is Created?
 
-CNI is responsible for:
-1️⃣ Assigning IP to pods
-2️⃣ Creating virtual ethernet pairs
-3️⃣ Routing packets between nodes
-4️⃣ Handling overlay/underlay networks
-5️⃣ Enforcing network policies
+Example:
 
-### Example of Pod Networking
+Pod gets IP → `10.244.2.15`
+Steps:
 
-When a Pod is created:
-
-* CNI assigns Pod IP → `10.244.3.25`
-* Creates a **veth pair**
-
-  * One end in Pod
-  * One end in host network namespace
-* Configures routing rules
-* Updates cluster-wide routing via CNI backend (Flannel/Calico/etc.)
+* CNI assigns IP
+* Creates veth pair
+* Attaches Pod to bridge
+* Configures routing
+* Updates cluster routing map
 
 ---
 
-# 🔥 Bringing it all Together (Full Flow Diagram)
+# 4️⃣ **Network Policies – Kubernetes Firewall**
+
+By default:
+
+✔ All Pods can talk to all Pods
+❌ No security between microservices
+
+Network Policies enforce **zero-trust networking**.
+
+**Supported by:** Calico, Cilium, Weave
+(Not supported by basic Flannel)
+
+---
+
+## 🔸 NetworkPolicy Concepts
+
+A NetworkPolicy defines:
+
+✔ **Which Pods are selected**
+✔ **What incoming/outgoing traffic is allowed**
+✔ **Ports**
+✔ **Sources/Destinations**
+
+---
+
+# ✔ Example 1: Allow Only Frontend → Backend
+
+### Goal
+
+Only frontend can talk to backend on port 8080.
+
+### YAML
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
+```
+
+### Result
 
 ```
-Internet
-   ↓
-+------------------------+
-|  Cloud LoadBalancer    |  ← (For LoadBalancer & Ingress)
-+------------------------+
-          ↓
-   +---------------------+
-   |  Ingress Controller |
-   +---------------------+
-        ↓        ↓
-   /api → backend-service (ClusterIP)
-   /    → frontend-service (ClusterIP)
-        ↓                     ↓
-   backend Pods         frontend Pods
-        ↓                     ↓
-      (CNI: Calico/Flannel assigns pod IPs)
-        ↓
-   Pod-to-Pod communication (flat network)
+Frontend → Backend:8080   ✔ ALLOWED
+Database → Backend:8080   ✖ BLOCKED
+Any Pod → Backend         ✖ BLOCKED
 ```
 
 ---
 
-# 🧠 **Summary Table**
+# ✔ Example 2: Allow Backend → Database (Egress Policy)
 
-| Component        | Layer | Purpose                      |
-| ---------------- | ----- | ---------------------------- |
-| **ClusterIP**    | L4    | Internal communication       |
-| **NodePort**     | L4    | Access via node IP           |
-| **LoadBalancer** | L4    | Cloud external access        |
-| **Ingress**      | L7    | Domain + path based routing  |
-| **CNI**          | L2/L3 | Pod networking, routing, IPs |
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-egress-to-db
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: database
+      ports:
+        - protocol: TCP
+          port: 3306
+```
 
 ---
 
+# 🔥 Full Networking Flow Diagram (Complete)
+
+```
+                   Internet
+                      ↓
+          +------------------------+
+          |   Cloud LoadBalancer   |
+          +------------------------+
+                      ↓
+            +--------------------+
+            |  Ingress Controller |
+            +--------------------+
+              ↓       ↓       ↓
+        /      /api      /auth
+        ↓        ↓         ↓
+frontend-svc  backend-svc  auth-svc
+   ↓             ↓            ↓
+frontend pods  backend pods  auth pods
+   ↓             ↓            ↓
+NetworkPolicy  NetworkPolicy  NetworkPolicy
+   ↓             ↓            ↓
+      (Traffic allowed only where defined)
+```
+
+---
+
+# 🧠 **Final Summary Table**
+
+| Component         | Layer | Purpose                    |
+| ----------------- | ----- | -------------------------- |
+| **ClusterIP**     | L4    | Internal-only service      |
+| **NodePort**      | L4    | Expose service via node IP |
+| **LoadBalancer**  | L4    | External cloud LB          |
+| **Ingress**       | L7    | Domain/path routing        |
+| **CNI Plugin**    | L2/L3 | Pod networking, routing    |
+| **NetworkPolicy** | L3/L4 | Pod-level firewall         |
+
+---
