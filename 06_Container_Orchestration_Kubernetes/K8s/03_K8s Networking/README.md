@@ -135,9 +135,9 @@ kind: Service
 metadata:
   name: my-loadbalancer-service
 spec:
+  type: LoadBalancer
   selector:
     app: my-app
-  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80         # External port
