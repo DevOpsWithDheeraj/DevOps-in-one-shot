@@ -33,7 +33,7 @@ There are **3 main Service types**:
 
 A **ClusterIP service** provides a **virtual IP address** (called **ClusterIP**) inside the Kubernetes cluster. This IP is only reachable **within the cluster**, not from the outside world.
 
-* **Purpose:** Allows Pods and other services inside the cluster to communicate with each other using a stable IP, even if the Pods themselves change.
+> **Purpose:** Allows Pods and other services inside the cluster to communicate with each other using a stable IP, even if the Pods themselves change.
 
 
 ## **Example YAML**
