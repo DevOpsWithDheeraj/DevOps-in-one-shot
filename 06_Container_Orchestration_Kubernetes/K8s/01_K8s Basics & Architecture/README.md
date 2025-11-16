@@ -147,6 +147,3 @@ kubectl apply -f webapp-service.yaml
 
 ---
 
-If you want, I can also **draw a full-color visual diagram** showing the **K8s architecture with Pods, Services, and Master-Worker interactions**, which is much easier to understand than text.
-
-Do you want me to do that?
