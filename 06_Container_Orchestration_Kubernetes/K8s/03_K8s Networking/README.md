@@ -31,6 +31,10 @@ There are **3 main Service types**:
 
 # 🔹 1. ClusterIP (Default Service)
 
+In Kubernetes, ClusterIP is one of the Service types used to expose a set of Pods internally within the cluster. It is the default Service type. 
+
+---
+
 A **ClusterIP service** provides a **virtual IP address** (called **ClusterIP**) inside the Kubernetes cluster. This IP is only reachable **within the cluster**, not from the outside world.
 
 > **Purpose:** Allows Pods and other services inside the cluster to communicate with each other using a stable IP, even if the Pods themselves change.
