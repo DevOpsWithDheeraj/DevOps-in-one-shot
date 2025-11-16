@@ -9,31 +9,26 @@ To handle persistent data, Kubernetes provides **persistent storage solutions**.
 ### **Key Concepts**
 
 1. **Volumes**
-
    * A **Volume** is a directory accessible to containers in a Pod.
    * Unlike ephemeral container storage, data in a Volume can persist as long as the Pod exists.
    * Kubernetes supports different types of volumes: `emptyDir`, `hostPath`, `configMap`, `secret`, `persistentVolumeClaim`, etc.
 
 2. **PersistentVolume (PV)**
-
    * PV is a piece of storage in the cluster **provisioned by an administrator** or dynamically using a **StorageClass**.
    * PV is a **cluster resource** independent of any Pod.
    * Example types: NFS, AWS EBS, GCE Persistent Disk, iSCSI, Ceph, etc.
 
 3. **PersistentVolumeClaim (PVC)**
-
    * PVC is a **request for storage by a user**.
    * It specifies the size, access modes, and storage class needed.
    * Kubernetes binds a PVC to an available PV that matches the requirements.
 
 4. **StorageClass**
-
    * Defines **how storage is dynamically provisioned**.
    * Specifies the type of storage (e.g., SSD, HDD) and the **provisioner** (like AWS EBS, GCE PD).
    * Enables dynamic PV creation when PVCs are requested.
 
 5. **Access Modes**
-
    * **ReadWriteOnce (RWO)** – Pod can read/write from one node.
    * **ReadOnlyMany (ROX)** – Pod can read from multiple nodes.
    * **ReadWriteMany (RWX)** – Pod can read/write from multiple nodes.
