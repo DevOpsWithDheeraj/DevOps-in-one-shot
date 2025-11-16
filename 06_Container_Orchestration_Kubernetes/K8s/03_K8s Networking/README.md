@@ -93,9 +93,9 @@ kind: Service
 metadata:
   name: my-nodeport-service
 spec:
+  type: NodePort
   selector:
     app: my-app
-  type: NodePort
   ports:
     - protocol: TCP
       port: 80         # Service port
