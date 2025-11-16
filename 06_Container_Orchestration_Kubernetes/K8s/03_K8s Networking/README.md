@@ -4,11 +4,11 @@
 
 Kubernetes networking is built on 4 golden rules:
 
-1️⃣ **Every Pod gets its own unique IP**
-2️⃣ **All Pods can communicate with all other Pods (flat network)**
-3️⃣ **Node IPs and Pod IPs are separate**
-4️⃣ **Pods are ephemeral → IPs change**
-So… Kubernetes provides **Services**, **Ingress**, and **CNI plugins** to solve networking challenges.
+1️⃣ **Every Pod gets its own unique IP** <br>
+2️⃣ **All Pods can communicate with all other Pods (flat network)** <br>
+3️⃣ **Node IPs and Pod IPs are separate** <br>
+4️⃣ **Pods are ephemeral → IPs change** <br>
+So… Kubernetes provides **Services**, **Ingress**, and **CNI plugins** to solve networking challenges. <br>
 
 ---
 
