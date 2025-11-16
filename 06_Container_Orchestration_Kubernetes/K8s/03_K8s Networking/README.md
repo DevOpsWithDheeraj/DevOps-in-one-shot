@@ -4,10 +4,10 @@
 
 Kubernetes networking is built on **4 golden rules**:
 
-1️⃣ **Every Pod gets its own unique IP**
-2️⃣ **All Pods can communicate with all other Pods (flat network)**
-3️⃣ **Node IPs and Pod IPs are different**
-4️⃣ **Pods are ephemeral → Pod IPs keep changing**
+1️⃣ **Every Pod gets its own unique IP** <br>
+2️⃣ **All Pods can communicate with all other Pods (flat network)** <br>
+3️⃣ **Node IPs and Pod IPs are different** <br>
+4️⃣ **Pods are ephemeral → Pod IPs keep changing** <br>
 
 To handle this, Kubernetes provides:
 
