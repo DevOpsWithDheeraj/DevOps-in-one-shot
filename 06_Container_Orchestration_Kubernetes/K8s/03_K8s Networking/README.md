@@ -61,7 +61,7 @@ spec:
 * **`type`** → determines how the Service is exposed.
 
 💡 **Summary:**
-A **Service** is like a **stable front door** to a set of Pods. Even if the Pods behind it change, the Service IP/DNS remains the same.
+> A **Service** is like a **stable front door** to a set of Pods. Even if the Pods behind it change, the Service IP/DNS remains the same.
 ---
 
 # 🔹 1. ClusterIP (Default Service)
