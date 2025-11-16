@@ -44,13 +44,13 @@ kind: Service
 metadata:
   name: my-service
 spec:
+  type: ClusterIP
   selector:
     app: my-app
   ports:
     - protocol: TCP
       port: 80       # Service port
       targetPort: 8080 # Pod port
-  type: ClusterIP
 ```
 
 * **`selector`** → chooses the Pods this service will route traffic to.
