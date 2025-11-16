@@ -275,117 +275,54 @@ In Kubernetes, **CNI** stands for **Container Network Interface**. It’s a **st
 ---
 
 # 4️⃣ **Network Policies – Kubernetes Firewall**
+In Kubernetes, **Network Policies** are used to **control network traffic between Pods**. They act like a **firewall for your cluster**, defining which Pods can communicate with each other and with external endpoints.
 
-By default:
+A **NetworkPolicy** is a **Kubernetes resource** that specifies **ingress (incoming) and egress (outgoing) rules** for Pods.
 
-✔ All Pods can talk to all Pods
-❌ No security between microservices
+* By default, in Kubernetes **all Pods can communicate with all other Pods**.
+* NetworkPolicies let you **restrict or allow traffic** based on **Pod selectors, namespaces, or IP blocks**.
+* Requires a **CNI plugin that supports NetworkPolicies** (e.g., Calico, Cilium).
 
-Network Policies enforce **zero-trust networking**.
+### **Key Features**
 
-**Supported by:** Calico, Cilium, Weave
-(Not supported by basic Flannel)
+* **Pod-level control:** Apply rules to specific Pods using labels.
+* **Namespace-level control:** Restrict traffic between namespaces.
+* **Ingress & Egress rules:** Control incoming and outgoing traffic separately.
+* **Security:** Helps implement zero-trust networking inside the cluster.
 
----
-
-## 🔸 NetworkPolicy Concepts
-
-A NetworkPolicy defines:
-
-✔ **Which Pods are selected**
-✔ **What incoming/outgoing traffic is allowed**
-✔ **Ports**
-✔ **Sources/Destinations**
-
----
-
-# ✔ Example 1: Allow Only Frontend → Backend
-
-### Goal
-
-Only frontend can talk to backend on port 8080.
-
-### YAML
+### **Example YAML**
 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-frontend-to-backend
+  name: allow-frontend
+  namespace: default
 spec:
   podSelector:
     matchLabels:
-      app: backend
+      role: backend
   policyTypes:
     - Ingress
   ingress:
     - from:
         - podSelector:
             matchLabels:
-              app: frontend
+              role: frontend
       ports:
         - protocol: TCP
           port: 8080
 ```
 
-### Result
+**Explanation:**
 
-```
-Frontend → Backend:8080   ✔ ALLOWED
-Database → Backend:8080   ✖ BLOCKED
-Any Pod → Backend         ✖ BLOCKED
-```
+* Applies to Pods with label `role: backend`.
+* Only allows **incoming traffic** from Pods labeled `role: frontend` on TCP port 8080.
+* All other traffic to backend Pods is **blocked**.
 
 ---
 
-# ✔ Example 2: Allow Backend → Database (Egress Policy)
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: backend-egress-to-db
-spec:
-  podSelector:
-    matchLabels:
-      app: backend
-  policyTypes:
-    - Egress
-  egress:
-    - to:
-        - podSelector:
-            matchLabels:
-              app: database
-      ports:
-        - protocol: TCP
-          port: 3306
-```
-
----
-
-# 🔥 Full Networking Flow Diagram (Complete)
-
-```
-                   Internet
-                      ↓
-          +------------------------+
-          |   Cloud LoadBalancer   |
-          +------------------------+
-                      ↓
-            +--------------------+
-            |  Ingress Controller |
-            +--------------------+
-              ↓       ↓       ↓
-        /      /api      /auth
-        ↓        ↓         ↓
-frontend-svc  backend-svc  auth-svc
-   ↓             ↓            ↓
-frontend pods  backend pods  auth pods
-   ↓             ↓            ↓
-NetworkPolicy  NetworkPolicy  NetworkPolicy
-   ↓             ↓            ↓
-      (Traffic allowed only where defined)
-```
+💡 **Tip:** Without NetworkPolicies, Kubernetes networking is **open by default**. Think of NetworkPolicies as **rules for who can talk to whom** inside your cluster.
 
 ---
 
