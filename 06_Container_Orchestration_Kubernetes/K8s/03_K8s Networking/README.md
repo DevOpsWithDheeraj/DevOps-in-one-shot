@@ -33,8 +33,6 @@ There are **3 main Service types**:
 
 In Kubernetes, ClusterIP is one of the Service types used to expose a set of Pods internally within the cluster. It is the default Service type. 
 
----
-
 A **ClusterIP service** provides a **virtual IP address** (called **ClusterIP**) inside the Kubernetes cluster. This IP is only reachable **within the cluster**, not from the outside world.
 
 > **Purpose:** Allows Pods and other services inside the cluster to communicate with each other using a stable IP, even if the Pods themselves change.
@@ -70,10 +68,6 @@ spec:
 
 In Kubernetes, **NodePort** is another **Service type** that allows you to expose your application **outside the cluster**. 
 
----
-
-## **1. Definition**
-
 A **NodePort service** exposes a service on a **static port on each Node** of the Kubernetes cluster. This allows external clients to access your service using:
 
 ```
@@ -85,7 +79,7 @@ A **NodePort service** exposes a service on a **static port on each Node** of th
 
 ---
 
-### **2. How it works**
+## **2. How it works**
 
 1. Kubernetes assigns a **ClusterIP** (internal IP) to the service, just like ClusterIP.
 2. It also allocates a **NodePort**.
@@ -95,7 +89,7 @@ This means NodePort is basically **ClusterIP + external exposure via node port**
 
 ---
 
-### **3. Example YAML**
+## **3. Example YAML**
 
 ```yaml
 apiVersion: v1
