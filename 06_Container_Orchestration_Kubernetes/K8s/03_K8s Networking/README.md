@@ -6,7 +6,6 @@ In Kubernetes, **Networking** refers to the **communication framework that enabl
 **Kubernetes Networking** is the **set of rules, protocols, and components that manage how network traffic flows inside and outside the cluster**.
 
 It ensures:
-
 1. **Pod-to-Pod communication** across nodes without NAT.
 2. **Pod-to-Service communication** via stable IPs.
 3. **External access** through Services like NodePort, LoadBalancer, and Ingress.
