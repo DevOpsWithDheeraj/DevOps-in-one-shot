@@ -31,41 +31,34 @@ There are **3 main Service types**:
 
 # 🔹 1. ClusterIP (Default Service)
 
-ClusterIP exposes your application **inside the cluster only**.
+A **ClusterIP service** provides a **virtual IP address** (called **ClusterIP**) inside the Kubernetes cluster. This IP is only reachable **within the cluster**, not from the outside world.
 
-### 📌 When to use?
+* **Purpose:** Allows Pods and other services inside the cluster to communicate with each other using a stable IP, even if the Pods themselves change.
 
-* Backend ↔ Database communication
-* Internal microservice communication
 
-### Example
-
-```
-http://backend-service:8080
-```
-
-Even if Pods restart, service always routes to correct Pods using labels.
-
-### Diagram
-
-```
-Frontend Pod → ClusterIP Service → Backend Pods
-```
-
-### YAML
+## **Example YAML**
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: my-service
 spec:
   selector:
-    app: backend
+    app: my-app
   ports:
-  - port: 8080
-    targetPort: 8080
+    - protocol: TCP
+      port: 80       # Service port
+      targetPort: 8080 # Pod port
+  type: ClusterIP
 ```
+
+* **`selector`** → chooses the Pods this service will route traffic to.
+* **`port`** → the port on which the service is exposed internally.
+* **`targetPort`** → the port on the Pod receiving traffic.
+* **`type: ClusterIP`** → makes it accessible only inside the cluster.
+
+💡 **Tip:** If you want the service to be accessible from **outside the cluster**, you would use `NodePort` or `LoadBalancer` instead of `ClusterIP`.
 
 ---
 
