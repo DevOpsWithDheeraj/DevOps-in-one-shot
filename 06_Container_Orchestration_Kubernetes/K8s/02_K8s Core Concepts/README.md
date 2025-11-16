@@ -157,9 +157,9 @@ spec:
   selector:
     app: myapp
   ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30080
+  - port: 80         # Port exposed by the service
+    targetPort: 80    # Port on the Pod/Container
+    nodePort: 30080    # Port on the Node
 ```
 
 💡 **Use-case**: Access from browser using:
