@@ -101,7 +101,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.21
+        image: nginx:1.20
 ```
 
 💡 **Use-case**: You want to update your app from nginx 1.20 → 1.21 **without downtime**
