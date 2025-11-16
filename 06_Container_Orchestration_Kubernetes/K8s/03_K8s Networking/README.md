@@ -77,9 +77,7 @@ A **NodePort service** exposes a service on a **static port on each Node** of th
 * **NodeIP** → IP of any node in the cluster
 * **NodePort** → port assigned by Kubernetes (default range: **30000–32767**) or manually defined.
 
----
-
-## **2. How it works**
+## ** How it works**
 
 1. Kubernetes assigns a **ClusterIP** (internal IP) to the service, just like ClusterIP.
 2. It also allocates a **NodePort**.
@@ -87,9 +85,7 @@ A **NodePort service** exposes a service on a **static port on each Node** of th
 
 This means NodePort is basically **ClusterIP + external exposure via node port**.
 
----
-
-## **3. Example YAML**
+## **Example YAML**
 
 ```yaml
 apiVersion: v1
