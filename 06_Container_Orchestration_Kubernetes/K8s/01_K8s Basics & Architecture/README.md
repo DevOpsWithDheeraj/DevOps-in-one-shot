@@ -164,8 +164,10 @@ In short:
 ---
 ### 🔴 **b. Kube-Proxy**
 
-* Handles cluster networking & load-balancing for services.
-* Manages communication between Pods and Services.
+Kube-Proxy is a networking component that runs on each worker node and manages network communication for Kubernetes services.
+
+In short:
+Kube-Proxy = The network traffic manager on each node that enables pods and services to communicate inside and outside the cluster.
 
 📌 **Example:**
 > You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
