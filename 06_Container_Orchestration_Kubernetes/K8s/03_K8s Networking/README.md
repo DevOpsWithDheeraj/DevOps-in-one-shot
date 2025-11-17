@@ -44,7 +44,7 @@ A **Service** provides a **stable IP address and DNS name** to a group of Pods, 
 
 >  **Purpose:** Allows communication between Pods or from external clients without worrying about the dynamic Pod IPs.
 
-### **Key Features**
+### **a. Key Features**
 
 * **Stable endpoint:** Pods can come and go, but the Service provides a consistent IP/DNS.
 * **Load balancing:** Distributes traffic evenly among Pods that match the Service selector.
@@ -52,7 +52,7 @@ A **Service** provides a **stable IP address and DNS name** to a group of Pods, 
 * **Decoupling:** Consumers of the Service don’t need to know about the specific Pods.
 ---
 
-### **🔑 Functions of a Service**
+### **b. Functions of a Service**
 
 #### 1️⃣ **Load Balancing**
 
@@ -108,7 +108,7 @@ spec:
 > A service ensures traffic to Nginx pods is routed correctly, even if pods move to different nodes.
 
 ---
-### **How it works**
+### **c. How it works**
 
 * You define a **selector** in the Service that matches a set of Pods (usually via labels).
 * Kubernetes automatically forwards traffic sent to the Service IP to the matching Pods.
