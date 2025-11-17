@@ -8,8 +8,8 @@ In simple words:
 > Kubernetes = A system that runs your containers automatically and keeps them healthy, balanced, and always available.
 
 
-🧩 Why do we need Kubernetes?
-Without Kubernetes, running containers manually becomes difficult:
+🧩 Why do we need Kubernetes? <br>
+Without Kubernetes, running containers manually becomes difficult: <br>
 * You need to start/stop containers manually
 * No automatic restart if a container fails
 * No automatic scaling when traffic increases
