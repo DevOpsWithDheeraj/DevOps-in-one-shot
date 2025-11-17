@@ -38,13 +38,11 @@ spec:
 
 ## 2️⃣ **ReplicaSet — Ensures Desired Number of Pods**
 
-A ReplicaSet ensures **how many Pods** should always be running.
+A ReplicaSet is a Kubernetes controller that ensures a specified number of identical Pods are always running.
+If a Pod crashes, gets deleted, or becomes unhealthy, the ReplicaSet automatically creates a new one to maintain the desired count.
 
-### 🔥 Key Points
-
-* Ensures **high availability** → keeps desired count
-* If one Pod crashes, RS creates a new one
-* Uses **labels** to identify/manage Pods
+**Notes:**
+> ReplicaSet = Desired number of Pods + Auto-healing
 
 ### 🎯 Example
 
