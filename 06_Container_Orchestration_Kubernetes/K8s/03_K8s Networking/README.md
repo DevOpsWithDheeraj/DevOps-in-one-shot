@@ -50,9 +50,6 @@ A **Service** provides a **stable IP address and DNS name** to a group of Pods, 
 * **Load balancing:** Distributes traffic evenly among Pods that match the Service selector.
 * **Discovery:** Other Pods can discover a Service using its DNS name.
 * **Decoupling:** Consumers of the Service don’t need to know about the specific Pods.
-
-Here’s a detailed explanation of the **functions of a Kubernetes Service**, focusing on **Load Balancing, Service Discovery, and Networking**:
-
 ---
 
 ### **🔑 Functions of a Service**
@@ -110,7 +107,7 @@ spec:
 **Example:**
 > A service ensures traffic to Nginx pods is routed correctly, even if pods move to different nodes.
 
-
+---
 ### **How it works**
 
 * You define a **selector** in the Service that matches a set of Pods (usually via labels).
