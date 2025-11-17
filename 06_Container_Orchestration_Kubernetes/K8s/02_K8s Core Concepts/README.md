@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:1.20
 ```
 
 💡 **Use-case**: You want **3 replicas** of your app for load-balancing & reliability.
