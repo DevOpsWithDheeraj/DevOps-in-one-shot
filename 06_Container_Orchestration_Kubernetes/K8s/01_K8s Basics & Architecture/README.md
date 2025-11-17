@@ -15,52 +15,7 @@ Kubernetes (K8s) is an **open-source container orchestration platform** that aut
 
 > You have a web application running in Docker containers. Instead of manually managing 10 containers across 3 servers, K8s handles deployment, scaling, and health checks automatically. ⚡
 
----
-
-## **2. Kubernetes Architecture 🏗️**
-
-K8s has a **master-Slave architecture**.
-
-### **1. Master Node (Control Plane) 🖥️**
-
-It is the brain of the Cluster. Manages the cluster.
-
-| Component                       | Function                                                                       |
-| ------------------------------- | ------------------------------------------------------------------------------ |
-| **API Server (kube-apiserver)** | 🔑 Entry point for all API requests (kubectl or internal services).            |
-| **etcd**                        | 💾 Key-value store for cluster state & configuration.                          |
-| **Controller Manager**          | 🔄 Ensures cluster desired state matches actual state (replicas, nodes, etc.). |
-| **Scheduler**                   | 📌 Assigns workloads (Pods) to worker nodes based on resources and policies.   |
-
-### **2. Worker Node 🧑‍💻**
-
-Runs the application workloads.
-
-| Component             | Function                                                         |
-| --------------------- | ---------------------------------------------------------------- |
-| **kubelet**           | ✅ Agent that ensures containers in Pods are running as expected. |
-| **kube-proxy**        | 🌐 Manages networking and load balancing for services.           |
-| **Container Runtime** | 🐳 Runs containers (Docker, containerd, CRI-O).                  |
-
-### **Pod 📦**
-
-* Smallest deployable unit in Kubernetes.
-* Can contain **one or more containers** that share storage/network.
-
-### **Service 🌉**
-
-* Exposes pods to the outside world or internally.
-* Provides **load balancing**.
-
-### **Other Key Objects 🛠️**
-
-* **Deployment**: Defines desired state of pods, updates, rollbacks. 🔄
-* **ConfigMap & Secret**: Manage configuration and sensitive data. 🔑
-* **PersistentVolume (PV) & PersistentVolumeClaim (PVC)**: Storage management. 💾
-
----
-
-## **3. Kubernetes Architecture Diagram 🏛️**
+## **2. Kubernetes Architecture Diagram 🏛️**
 
 ```
                                +------------------------+
@@ -84,64 +39,121 @@ Runs the application workloads.
 +----------------------+            +-----------------------+        +-----------------------+
 ```
 
+Kubernetes follows a **Master-Node / Control Plane – Worker Nodes** architecture.
+
+There are **two main parts**:
+
+1. **Control Plane (Master Components)**
+2. **Worker Node (Data Plane Components)**
+
 ---
 
-## **4. Kubernetes Example 💡**
+# 🧠 **1. CONTROL PLANE (Master Components)**
 
-### Scenario: Deploy a web app 🌐
+The **Control Plane** is the "brain" of Kubernetes.
+It makes decisions about scheduling, maintaining cluster state, scaling, and responding to failures.
 
-1. Create a **deployment** file `webapp-deployment.yaml`:
+### **Control Plane Components:**
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webapp
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: webapp
-  template:
-    metadata:
-      labels:
-        app: webapp
-    spec:
-      containers:
-      - name: webapp
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-```
+---
 
-2. Deploy in K8s cluster:
+## 🟩 **a. API Server (`kube-apiserver`)**
+
+* The **entry point** to the Kubernetes cluster.
+* All kubectl commands go to the API server.
+* Validates requests and updates the cluster state.
+
+📌 **Example:**
+When you run:
 
 ```bash
-kubectl apply -f webapp-deployment.yaml
+kubectl create -f deployment.yaml
 ```
 
-3. Expose it as a **service** to access via a browser:
+The request first goes to the **API Server**, which stores the deployment info in ETCD.
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: webapp-service
-spec:
-  type: NodePort
-  selector:
-    app: webapp
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-```
+---
 
-```bash
-kubectl apply -f webapp-service.yaml
-```
+## 🟦 **b. etcd (Key-Value Store)**
 
-✅ Now, your Nginx app is running in 3 replicas, load-balanced, and can scale easily. 🚀📈
+* A **distributed database** that stores the entire cluster state.
+* Stores: pods, deployments, nodes, configmaps, secrets, events, etc.
+
+📌 **Example:**
+If a Pod crashes, Kubelet reads from etcd (via API server) to check desired state.
+
+---
+
+## 🟨 **c. Controller Manager (`kube-controller-manager`)**
+
+Contains controllers that watch the cluster state and ensure desired state = current state.
+
+Main controllers:
+
+* Node Controller
+* Deployment Controller
+* ReplicaSet Controller
+* Endpoint Controller
+* Job Controller
+
+📌 **Example:**
+Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controller creates 1 more Pod.
+
+---
+
+## 🟪 **d. Scheduler (`kube-scheduler`)**
+
+* Assigns Pods to nodes based on resources, taints, affinity, etc.
+
+📌 **Example:**
+A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free resources.
+
+---
+
+## 🟧 **e. Cloud Controller Manager (optional)**
+
+* Integrates Kubernetes with cloud providers (AWS, GCP, Azure).
+
+📌 **Example:**
+Creates AWS load balancers when you create a `LoadBalancer` service.
+
+---
+
+---
+
+# 🖥️ **2. WORKER NODES (Data Plane)**
+
+Worker Nodes run your applications (Pods).
+
+Each worker node has:
+
+---
+
+## 🔵 **a. Kubelet**
+
+* Agent running on every node.
+* Ensures containers are running as per the PodSpec.
+
+📌 **Example:**
+If API Server says a Pod must run here, kubelet pulls the image and starts the container.
+
+---
+
+## 🔴 **b. Kube-Proxy**
+
+* Handles cluster networking & load-balancing for services.
+* Manages communication between Pods and Services.
+
+📌 **Example:**
+You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
+
+---
+
+## 🟢 **c. Container Runtime**
+
+Runs containers (Docker, containerd, CRI-O).
+
+📌 **Containers inside Pods are run using this runtime.**
 
 ---
 
