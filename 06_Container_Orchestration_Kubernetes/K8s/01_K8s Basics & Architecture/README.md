@@ -62,13 +62,13 @@ It makes decisions about scheduling, maintaining cluster state, scaling, and res
 * Validates requests and updates the cluster state.
 
 📌 **Example:**
-When you run:
+> When you run:
 
 ```bash
 kubectl create -f deployment.yaml
 ```
 
-The request first goes to the **API Server**, which stores the deployment info in ETCD.
+> The request first goes to the **API Server**, which stores the deployment info in ETCD.
 
 ---
 
@@ -78,7 +78,7 @@ The request first goes to the **API Server**, which stores the deployment info i
 * Stores: pods, deployments, nodes, configmaps, secrets, events, etc.
 
 📌 **Example:**
-If a Pod crashes, Kubelet reads from etcd (via API server) to check desired state.
+> If a Pod crashes, Kubelet reads from etcd (via API server) to check desired state.
 ---
 
 ### 🟨 **c. Controller Manager (`kube-controller-manager`)**
@@ -94,7 +94,7 @@ Main controllers:
 * Job Controller
 
 📌 **Example:**
-Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controller creates 1 more Pod.
+> Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controller creates 1 more Pod.
 
 ---
 ### 🟪 **d. Scheduler (`kube-scheduler`)**
@@ -102,7 +102,7 @@ Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controlle
 * Assigns Pods to nodes based on resources, taints, affinity, etc.
 
 📌 **Example:**
-A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free resources.
+> A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free resources.
 
 ---
 ### 🟧 **e. Cloud Controller Manager (optional)**
@@ -110,7 +110,7 @@ A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free r
 * Integrates Kubernetes with cloud providers (AWS, GCP, Azure).
 
 📌 **Example:**
-Creates AWS load balancers when you create a `LoadBalancer` service.
+> Creates AWS load balancers when you create a `LoadBalancer` service.
 
 ---
 
@@ -127,7 +127,7 @@ Each worker node has:
 * Ensures containers are running as per the PodSpec.
 
 📌 **Example:**
-If API Server says a Pod must run here, kubelet pulls the image and starts the container.
+> If API Server says a Pod must run here, kubelet pulls the image and starts the container.
 
 ---
 ### 🔴 **b. Kube-Proxy**
@@ -136,14 +136,14 @@ If API Server says a Pod must run here, kubelet pulls the image and starts the c
 * Manages communication between Pods and Services.
 
 📌 **Example:**
-You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
+> You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
 
 ---
 ### 🟢 **c. Container Runtime**
 
 Runs containers (Docker, containerd, CRI-O).
 
-📌 **Containers inside Pods are run using this runtime.**
+> 📌 **Containers inside Pods are run using this runtime.**
 
 ---
 
