@@ -153,8 +153,10 @@ Each worker node has:
 
 ### 🔵 **a. Kubelet**
 
-* Agent running on every node.
-* Ensures containers are running as per the PodSpec.
+The Kubelet is an agent that runs on every worker node in a Kubernetes cluster. It ensures that containers in pods are running as expected.
+
+In short:
+> Kubelet = The node agent that communicates with the control plane and manages the pods on its node.
 
 📌 **Example:**
 > If API Server says a Pod must run here, kubelet pulls the image and starts the container.
