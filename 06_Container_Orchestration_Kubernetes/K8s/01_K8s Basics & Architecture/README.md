@@ -70,9 +70,13 @@ It makes decisions about scheduling, maintaining cluster state, scaling, and res
 ---
 ### 🟩 **a. API Server (`kube-apiserver`)**
 
-* The **entry point** to the Kubernetes cluster.
-* All kubectl commands go to the API server.
-* Validates requests and updates the cluster state.
+The API Server is the central management component of Kubernetes.
+
+It acts as the front door to the entire cluster.
+
+API Server is the main control-plane component that exposes the Kubernetes API, receives all cluster requests, validates them, and updates the cluster state in etcd.
+
+Every operation in Kubernetes goes through the API Server.
 
 📌 **Example:**
 > When you run:
@@ -81,7 +85,7 @@ It makes decisions about scheduling, maintaining cluster state, scaling, and res
 kubectl create -f deployment.yaml
 ```
 
-> The request first goes to the **API Server**, which stores the deployment info in ETCD.
+> The request first goes to the **API Server**, which stores the deployment info in etcd.
 
 ---
 
