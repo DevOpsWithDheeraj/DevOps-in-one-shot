@@ -201,14 +201,9 @@ env:
 
 ## 6️⃣ **Secret — Stores Sensitive Data**
 
-Secrets store **sensitive information**, such as:
+A Secret in Kubernetes is an object used to store sensitive data such as passwords, tokens, SSL keys, and credentials in a secure and encoded form.
 
-* Passwords
-* Tokens
-* API keys
-* Database credentials
-
-Stored in **Base64 encoded** format (not encrypted but safer than plain text).
+It keeps confidential information separate from Pod specifications and prevents hardcoding sensitive values inside container images or YAML files..
 
 ### 🎯 Example Secret
 
