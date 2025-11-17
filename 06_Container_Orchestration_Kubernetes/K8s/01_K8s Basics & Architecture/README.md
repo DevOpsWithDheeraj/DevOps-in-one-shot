@@ -132,7 +132,12 @@ In short:
 ---
 ### 🟧 **e. Cloud Controller Manager (optional)**
 
-* Integrates Kubernetes with cloud providers (AWS, GCP, Azure).
+The Cloud Controller Manager is a control plane component that allows Kubernetes to interact with the underlying cloud provider’s API.
+
+In short:
+> Cloud Controller Manager = The bridge between Kubernetes and cloud provider services (like AWS, GCP, Azure).
+
+It separates cloud-specific logic from the core Kubernetes components, making Kubernetes cloud-agnostic.
 
 📌 **Example:**
 > Creates AWS load balancers when you create a `LoadBalancer` service.
