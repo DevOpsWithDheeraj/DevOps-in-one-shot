@@ -105,10 +105,9 @@ In short:
 
 ### 🟨 **c. Controller Manager (`kube-controller-manager`)**
 
-Contains controllers that watch the cluster state and ensure desired state = current state.
+The Controller Manager is a control plane component that runs controllers, which are background processes that ensure the cluster’s **desired state** matches the **actual state**.
 
 Main controllers:
-
 * Node Controller
 * Deployment Controller
 * ReplicaSet Controller
