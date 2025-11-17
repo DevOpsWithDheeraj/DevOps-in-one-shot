@@ -168,16 +168,9 @@ spec:
 
 ## 5️⃣ **ConfigMap — Externalizing Non-Sensitive Configurations**
 
-ConfigMaps store **non-sensitive** data such as:
+A ConfigMap in Kubernetes is an object used to store non-confidential configuration data (key–value pairs) separately from application code.
 
-* URLs
-* Environment variables
-* Config files
-
-### 🔥 Key Points
-
-* Keeps config separate from image
-* Can be passed as **Env variables** or **mounted as files**
+It allows you to inject configuration into Pods without rebuilding the container image.
 
 ### 🎯 Example ConfigMap
 
