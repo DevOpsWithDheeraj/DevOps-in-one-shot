@@ -174,8 +174,17 @@ In short:
 
 ---
 ### 🟢 **c. Container Runtime**
+A Container Runtime is the software that runs and manages containers on a node. It is responsible for pulling container images, starting/stopping containers, and managing their lifecycle.
 
-Runs containers (Docker, containerd, CRI-O).
+In short:
+> Container Runtime = The engine that actually runs your containers inside pods.
+
+#### Popular Container Runtimes
+| Runtime        | Description                                             | Notes                                                                               |
+| -------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Docker**     | Original and widely used container engine.              | Deprecated as a runtime in K8s v1.24+, but still widely used for local development. |
+| **containerd** | Lightweight container runtime extracted from Docker.    | Default for most modern Kubernetes clusters.                                        |
+| **CRI-O**      | Minimal container runtime for Kubernetes.               | Designed to run Open Container Initiative (OCI) containers efficiently.             |
 
 > 📌 **Containers inside Pods are run using this runtime.**
 
