@@ -119,6 +119,10 @@ Main controllers:
 
 ---
 ### 🟪 **d. Scheduler (`kube-scheduler`)**
+The Scheduler is a control plane component that assigns newly created pods to nodes in the cluster based on available resources and constraints.
+
+In short:
+> Scheduler = The “placement officer” of Kubernetes that decides which node a pod should run on.
 
 * Assigns Pods to nodes based on resources, taints, affinity, etc.
 
