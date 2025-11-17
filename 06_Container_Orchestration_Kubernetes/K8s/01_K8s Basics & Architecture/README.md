@@ -10,11 +10,11 @@ In simple words:
 
 🧩 Why do we need Kubernetes? <br>
 Without Kubernetes, running containers manually becomes difficult: <br>
-* You need to start/stop containers manually
-* No automatic restart if a container fails
-* No automatic scaling when traffic increases
-* Hard to roll out updates without downtime
-> Kubernetes solves all these problems.
+* You need to start/stop containers manually <br>
+* No automatic restart if a container fails <br>
+* No automatic scaling when traffic increases <br>
+* Hard to roll out updates without downtime <br>
+> Kubernetes solves all these problems. <br>
 
 
 🔥 Key Features of Kubernetes <br>
