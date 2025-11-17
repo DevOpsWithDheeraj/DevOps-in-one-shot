@@ -7,14 +7,15 @@ Kubernetes (K8s) is an open-source container orchestration platform that helps y
 In simple words:
 > Kubernetes = A system that runs your containers automatically and keeps them healthy, balanced, and always available.
 
-🧩 Why do we need Kubernetes?
 
+🧩 Why do we need Kubernetes?
 Without Kubernetes, running containers manually becomes difficult:
 * You need to start/stop containers manually
 * No automatic restart if a container fails
 * No automatic scaling when traffic increases
 * Hard to roll out updates without downtime
 > Kubernetes solves all these problems.
+
 
 🔥 Key Features of Kubernetes
 1. Automatic Deployment : Runs your containers on different machines (nodes).
