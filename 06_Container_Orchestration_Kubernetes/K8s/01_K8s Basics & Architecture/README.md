@@ -18,12 +18,12 @@ Without Kubernetes, running containers manually becomes difficult: <br>
 ---
 
 🔥 Key Features of Kubernetes <br>
-1. Automatic Deployment : Runs your containers on different machines (nodes). <br>
-2. Self-Healing : If a container crashes, K8s restarts it.  If a node fails, it moves pods to another node.
-3. Auto Scaling : Adds or removes containers based on CPU, RAM, or custom metrics.
-4. Load Balancing & Service Discovery : Kubernetes provides a stable IP address to your app and balances traffic.
-5. Rolling Updates & Rollbacks :  Update apps without downtime.
-6. Configuration & Secrets Management : Uses ConfigMaps and Secrets for external configuration.
+1. **Automatic Deployment** : Runs your containers on different machines (nodes). <br>
+2. **Self-Healing** : If a container crashes, K8s restarts it.  If a node fails, it moves pods to another node.
+3. **Auto Scaling** : Adds or removes containers based on CPU, RAM, or custom metrics.
+4. **Load Balancing & Service Discovery** : Kubernetes provides a stable IP address to your app and balances traffic.
+5. **Rolling Updates & Rollbacks** :  Update apps without downtime.
+6. **Configuration & Secrets Management** : Uses ConfigMaps and Secrets for external configuration.
 
 **Example:**
 > You have a web application running in Docker containers. Instead of manually managing 10 containers across 3 servers, K8s handles deployment, scaling, and health checks automatically. ⚡
