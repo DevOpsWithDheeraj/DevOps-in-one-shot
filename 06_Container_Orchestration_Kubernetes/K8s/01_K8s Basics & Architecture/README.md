@@ -91,6 +91,11 @@ kubectl create -f deployment.yaml
 
 ### 🟦 **b. etcd (Key-Value Store)**
 
+etcd is a distributed, reliable, key-value store used by Kubernetes to store all cluster data and configuration.
+
+In short:
+> etcd is the database of Kubernetes that stores the entire cluster’s state and configuration.
+
 * A **distributed database** that stores the entire cluster state.
 * Stores: pods, deployments, nodes, configmaps, secrets, events, etc.
 
