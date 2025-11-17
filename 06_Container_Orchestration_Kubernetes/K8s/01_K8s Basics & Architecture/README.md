@@ -74,7 +74,7 @@ The API Server is the central management component of Kubernetes.
 
 It acts as the front door to the entire cluster.
 
-API Server is the main control-plane component that exposes the Kubernetes API, receives all cluster requests, validates them, and updates the cluster state in etcd.
+> API Server is the main control-plane component that exposes the Kubernetes API, receives all cluster requests, validates them, and updates the cluster state in etcd.
 
 Every operation in Kubernetes goes through the API Server.
 
