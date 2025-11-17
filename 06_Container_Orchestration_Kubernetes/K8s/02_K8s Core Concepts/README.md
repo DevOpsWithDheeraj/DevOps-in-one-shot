@@ -100,6 +100,8 @@ spec:
 💡 **Use-case**: You want to update your app from nginx 1.20 → 1.21 **without downtime**
 K8s will roll pods one by one.
 
+🔁 Workflow: <br>
+> Deployment → ReplicaSet → Pods → (Auto Healing + Auto Scaling + Rolling Updates)
 ---
 
 ## 4️⃣ **Service — Expose & Route Traffic to Pods**
