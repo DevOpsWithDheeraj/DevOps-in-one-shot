@@ -46,7 +46,7 @@ There are **two main parts**:
 1. **Control Plane (Master Components)**
 2. **Worker Node (Data Plane Components)**
 
-
+---
 ## 🧠 **1. CONTROL PLANE (Master Components)**
 
 The **Control Plane** is the "brain" of Kubernetes.
@@ -54,7 +54,7 @@ It makes decisions about scheduling, maintaining cluster state, scaling, and res
 
 ### **Control Plane Components:**
 
-
+---
 ### 🟩 **a. API Server (`kube-apiserver`)**
 
 * The **entry point** to the Kubernetes cluster.
@@ -70,6 +70,7 @@ kubectl create -f deployment.yaml
 
 The request first goes to the **API Server**, which stores the deployment info in ETCD.
 
+---
 
 ### 🟦 **b. etcd (Key-Value Store)**
 
@@ -78,7 +79,7 @@ The request first goes to the **API Server**, which stores the deployment info i
 
 📌 **Example:**
 If a Pod crashes, Kubelet reads from etcd (via API server) to check desired state.
-
+---
 
 ### 🟨 **c. Controller Manager (`kube-controller-manager`)**
 
@@ -95,7 +96,7 @@ Main controllers:
 📌 **Example:**
 Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controller creates 1 more Pod.
 
-
+---
 ### 🟪 **d. Scheduler (`kube-scheduler`)**
 
 * Assigns Pods to nodes based on resources, taints, affinity, etc.
@@ -103,7 +104,7 @@ Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controlle
 📌 **Example:**
 A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free resources.
 
-
+---
 ### 🟧 **e. Cloud Controller Manager (optional)**
 
 * Integrates Kubernetes with cloud providers (AWS, GCP, Azure).
@@ -128,7 +129,7 @@ Each worker node has:
 📌 **Example:**
 If API Server says a Pod must run here, kubelet pulls the image and starts the container.
 
-
+---
 ### 🔴 **b. Kube-Proxy**
 
 * Handles cluster networking & load-balancing for services.
@@ -137,7 +138,7 @@ If API Server says a Pod must run here, kubelet pulls the image and starts the c
 📌 **Example:**
 You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
 
-
+---
 ### 🟢 **c. Container Runtime**
 
 Runs containers (Docker, containerd, CRI-O).
