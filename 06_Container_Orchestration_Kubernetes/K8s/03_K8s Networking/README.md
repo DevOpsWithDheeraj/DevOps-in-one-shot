@@ -114,7 +114,7 @@ spec:
 * Kubernetes automatically forwards traffic sent to the Service IP to the matching Pods.
 * The Service type determines **how it is exposed** (ClusterIP, NodePort, LoadBalancer, or ExternalName).
 
-### **4. Example YAML**
+### **d. Example YAML**
 
 ```yaml
 apiVersion: v1
