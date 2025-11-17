@@ -46,7 +46,6 @@ There are **two main parts**:
 1. **Control Plane (Master Components)**
 2. **Worker Node (Data Plane Components)**
 
----
 
 ## 🧠 **1. CONTROL PLANE (Master Components)**
 
@@ -55,7 +54,6 @@ It makes decisions about scheduling, maintaining cluster state, scaling, and res
 
 ### **Control Plane Components:**
 
----
 
 ### 🟩 **a. API Server (`kube-apiserver`)**
 
@@ -72,7 +70,6 @@ kubectl create -f deployment.yaml
 
 The request first goes to the **API Server**, which stores the deployment info in ETCD.
 
----
 
 ### 🟦 **b. etcd (Key-Value Store)**
 
@@ -82,7 +79,6 @@ The request first goes to the **API Server**, which stores the deployment info i
 📌 **Example:**
 If a Pod crashes, Kubelet reads from etcd (via API server) to check desired state.
 
----
 
 ### 🟨 **c. Controller Manager (`kube-controller-manager`)**
 
@@ -99,7 +95,6 @@ Main controllers:
 📌 **Example:**
 Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controller creates 1 more Pod.
 
----
 
 ### 🟪 **d. Scheduler (`kube-scheduler`)**
 
@@ -108,7 +103,6 @@ Deployment needs **3 replicas**, but only 2 are running → ReplicaSet controlle
 📌 **Example:**
 A Pod needing 2 CPU & 2Gi RAM will be scheduled to a node that has enough free resources.
 
----
 
 ### 🟧 **e. Cloud Controller Manager (optional)**
 
@@ -119,15 +113,12 @@ Creates AWS load balancers when you create a `LoadBalancer` service.
 
 ---
 
----
-
 ## 🖥️ **2. WORKER NODES (Data Plane)**
 
 Worker Nodes run your applications (Pods).
 
 Each worker node has:
 
----
 
 ### 🔵 **a. Kubelet**
 
@@ -137,7 +128,6 @@ Each worker node has:
 📌 **Example:**
 If API Server says a Pod must run here, kubelet pulls the image and starts the container.
 
----
 
 ### 🔴 **b. Kube-Proxy**
 
@@ -147,7 +137,6 @@ If API Server says a Pod must run here, kubelet pulls the image and starts the c
 📌 **Example:**
 You hit a NodePort → kube-proxy forwards traffic to the correct Pod.
 
----
 
 ### 🟢 **c. Container Runtime**
 
