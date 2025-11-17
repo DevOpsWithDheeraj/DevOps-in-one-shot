@@ -6,17 +6,16 @@
 
 A **Pod** is the **smallest and simplest deployable unit** in Kubernetes that represents **one or more containers** running together with shared storage, network, and configuration.
 
-### 🔍 **Key Points About Pods:**
-* Smallest deployable object in Kubernetes
-* Runs **containers** (usually 1 container, sometimes more)
-* Containers inside a Pod **share:**
+### 🔍 **Key Points About Pods:** <br>
+* Smallest deployable object in Kubernetes  <br>
+* Runs **containers** (usually 1 container, sometimes more) <br>
+* Containers inside a Pod **share:** <br>
+     * Same network namespace (same IP, same ports) <br>
+     * Same storage volumes <br>
+     * Same lifecycle <br>
+* Designed to run **a single instance** of an application <br>
 
-  * Same network namespace (same IP, same ports)
-  * Same storage volumes
-  * Same lifecycle
-* Designed to run **a single instance** of an application
-
-
+**Note**: 
 > **Pod = 1 or more containers + shared network + shared storage**
 
 
