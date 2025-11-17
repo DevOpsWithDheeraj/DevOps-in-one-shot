@@ -110,9 +110,9 @@ K8s will roll pods one by one.
 
 ## 4️⃣ **Service — Expose & Route Traffic to Pods**
 
-A Service provides a stable endpoint (IP or DNS) to access pods.
+A Service in Kubernetes is a logical abstraction that provides a stable network endpoint to access one or more Pods.
 
-Since Pod IPs change frequently, Services give a **fixed address**.
+Even if Pods die, restart, or change IP addresses, the Service gives a consistent IP, DNS name, and port to reach them.
 
 ### Types of Services
 
