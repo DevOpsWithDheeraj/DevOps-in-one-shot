@@ -179,7 +179,7 @@ A Container Runtime is the software that runs and manages containers on a node. 
 In short:
 > Container Runtime = The engine that actually runs your containers inside pods.
 
-#### Popular Container Runtimes
+#### Popular Container Runtimes :
 | Runtime        | Description                                             | Notes                                                                               |
 | -------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | **Docker**     | Original and widely used container engine.              | Deprecated as a runtime in K8s v1.24+, but still widely used for local development. |
