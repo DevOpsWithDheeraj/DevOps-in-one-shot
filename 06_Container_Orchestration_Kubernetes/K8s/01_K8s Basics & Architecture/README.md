@@ -1,6 +1,6 @@
 
 
-# **1. What is Kubernetes? 🤖☸️**
+# **1. What is Kubernetes? ☸️**
 
 Kubernetes (K8s) is an open-source container orchestration platform that helps you deploy, manage, scale, and operate containerized applications automatically.
 
