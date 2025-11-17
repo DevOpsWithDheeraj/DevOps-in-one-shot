@@ -69,6 +69,7 @@ spec:
 ## 3️⃣ **Deployment — The Boss of ReplicaSets**
 
 A Deployment in Kubernetes is a high-level controller used to manage Pods and provide built-in features like **auto-healing**, **auto-scaling**, and **rolling updates**.
+
 A Deployment ensures that the desired number of pod replicas are always running and healthy.
 
 You can think of: <br>
