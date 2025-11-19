@@ -1,3 +1,5 @@
+# What is Ingress ?
+
 In **DevOps**, especially in **Kubernetes**, the term **Ingress** refers to a **Kubernetes resource** that manages **external access to services** running inside a Kubernetes cluster — typically **HTTP and HTTPS traffic**.
 
 Think of **Ingress** as a **smart traffic controller** or **entry gate** for your cluster.
