@@ -4,7 +4,7 @@ Think of **Ingress** as a **smart traffic controller** or **entry gate** for you
 
 ---
 
-### 🔹 Why Ingress Is Needed
+## 🔹 Why Ingress Is Needed
 
 When you deploy applications in Kubernetes:
 
@@ -19,7 +19,7 @@ When you deploy applications in Kubernetes:
 
 ---
 
-### 🔹 How Ingress Works
+## 🔹 How Ingress Works
 
 1. A user sends a request from the browser (e.g., `https://shop.example.com`).
 2. The request hits the **Ingress Controller** (e.g., NGINX Ingress, AWS ALB Ingress).
@@ -28,9 +28,9 @@ When you deploy applications in Kubernetes:
 
 ---
 
-### 🔹 Ingress Example
+## 🔹 Ingress Example
 
-#### 🧩 Suppose you have two apps:
+### 🧩 Suppose you have two apps:
 
 * **frontend-service** (React UI)
 * **backend-service** (API)
@@ -73,7 +73,7 @@ spec:
 
 ---
 
-### 🔹 Ingress Controller Example
+## 🔹 Ingress Controller Example
 
 Ingress resources need a **controller** to function — they don’t route traffic by themselves.
 
