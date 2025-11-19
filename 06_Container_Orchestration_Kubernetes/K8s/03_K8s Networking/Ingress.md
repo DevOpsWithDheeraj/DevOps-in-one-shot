@@ -94,14 +94,14 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main
 
 Here are **more clear & practical examples of Kubernetes Ingress** that you can use in interviews, real DevOps work, and learning.
 
-✅ Host-based routing
-✅ Path-based routing
-✅ Single service routing
-✅ Multiple-domain Ingress
-✅ TLS/HTTPS example
-✅ Ingress with rewrite rules
-✅ Ingress for microservices
-✅ Ingress load balancing behavior
+✅ Host-based routing <br>
+✅ Path-based routing <br>
+✅ Single service routing <br>
+✅ Multiple-domain Ingress <br>
+✅ TLS/HTTPS example <br>
+✅ Ingress with rewrite rules <br>
+✅ Ingress for microservices <br>
+✅ Ingress load balancing behavior <br>
 
 ---
 
