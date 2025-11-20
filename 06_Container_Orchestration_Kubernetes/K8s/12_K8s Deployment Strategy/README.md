@@ -268,11 +268,3 @@ If healthy → increase → 100% v2
 
 ---
 
-# 🎯 Final Notes (Interview-ready)
-
-* **RollingUpdate is default** strategy in Kubernetes Deployments.
-* **Blue-Green** and **Canary** are not built-in; require tools like
-  **Istio, Linkerd, Nginx Ingress, Argo Rollouts, Spinnaker, Helm**.
-* Canary is best when you want **real user testing** with controlled traffic.
-
----
