@@ -1,5 +1,5 @@
 
-# 🚀 **Kubernetes Deployment Strategies Explained**
+# 🚀 **Kubernetes Deployment Strategies**
 
 Deployment strategies define **how new versions of your application are released** with minimum downtime and risk.
 
