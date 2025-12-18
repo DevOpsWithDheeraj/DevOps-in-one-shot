@@ -1,4 +1,4 @@
-# Git & GitHub – Complete Practical Guide (with Flags & Examples)
+# Git & GitHub – Complete Practical Guide
 
 This guide explains **GitHub and advanced Git concepts** step by step with **commands, flags, and real examples**. Suitable for **DevOps / Software Engineers**.
 
