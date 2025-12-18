@@ -1,5 +1,4 @@
-# 🌿 Git Branching — Explained with Simple Examples
-
+# 🌿 Git Branching 
 Git **branching** lets you create independent lines of development within the same repository.
 Think of a branch as a **parallel universe** where you can work without disturbing the main code.
 
