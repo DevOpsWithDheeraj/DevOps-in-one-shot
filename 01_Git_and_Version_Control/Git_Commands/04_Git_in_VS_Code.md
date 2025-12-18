@@ -339,10 +339,10 @@ git log
 
 ## Summary
 
-✔ VS Code makes Git **visual & beginner-friendly**
-✔ Behind the scenes, it uses **Git CLI**
-✔ Perfect for **daily DevOps & development workflows**
-✔ Reduces command memorization
+✔ VS Code makes Git **visual & beginner-friendly**  <br>
+✔ Behind the scenes, it uses **Git CLI** <br>
+✔ Perfect for **daily DevOps & development workflows** <br>
+✔ Reduces command memorization 
 
 ---
 
